@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Dominio", "ContratoSeguro.Dominio\ContratoSeguro.Dominio.csproj", "{77A19EA8-465A-4754-B12A-F4EB2D1C69DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContratoSeguro.Dominio", "ContratoSeguro.Dominio\ContratoSeguro.Dominio.csproj", "{77A19EA8-465A-4754-B12A-F4EB2D1C69DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Comum", "ContratoSeguro.Comum\ContratoSeguro.Comum.csproj", "{41D9619C-A070-491C-84D8-C72A7D049A0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContratoSeguro.Comum", "ContratoSeguro.Comum\ContratoSeguro.Comum.csproj", "{41D9619C-A070-491C-84D8-C72A7D049A0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Testes", "ContratoSeguro.Testes\ContratoSeguro.Testes.csproj", "{598DC9EF-0130-4F76-8C20-479D2A297EE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContratoSeguro.Testes", "ContratoSeguro.Testes\ContratoSeguro.Testes.csproj", "{598DC9EF-0130-4F76-8C20-479D2A297EE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Infra.Data", "ContratoSeguro.Infra.Data\ContratoSeguro.Infra.Data.csproj", "{D89EE845-2F28-462D-A877-B4A6A8BB8D0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContratoSeguro.Infra.Data", "ContratoSeguro.Infra.Data\ContratoSeguro.Infra.Data.csproj", "{D89EE845-2F28-462D-A877-B4A6A8BB8D0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Api", "ContratoSeguro.Api\ContratoSeguro.Api.csproj", "{6CAC4C98-8A2D-4F49-A551-17267A1FD727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContratoSeguro.Api", "ContratoSeguro.Api\ContratoSeguro.Api.csproj", "{63F84D84-48A9-46E3-9506-3A0C43802046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{D89EE845-2F28-462D-A877-B4A6A8BB8D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89EE845-2F28-462D-A877-B4A6A8BB8D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89EE845-2F28-462D-A877-B4A6A8BB8D0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CAC4C98-8A2D-4F49-A551-17267A1FD727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CAC4C98-8A2D-4F49-A551-17267A1FD727}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CAC4C98-8A2D-4F49-A551-17267A1FD727}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CAC4C98-8A2D-4F49-A551-17267A1FD727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F84D84-48A9-46E3-9506-3A0C43802046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F84D84-48A9-46E3-9506-3A0C43802046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F84D84-48A9-46E3-9506-3A0C43802046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F84D84-48A9-46E3-9506-3A0C43802046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
