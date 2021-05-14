@@ -42,8 +42,8 @@ namespace ContratoSeguro_Api
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
             
-            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= DESKTOP-HQAU92S\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
-            //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
+            //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= DESKTOP-HQAU92S\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
+            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
 
             //JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -74,6 +74,13 @@ namespace ContratoSeguro_Api
             #region Injeção Dependência Usuario Funcionario
             services.AddTransient<IUsuarioFuncionarioRepository, UsuarioFuncionarioRepository>();
             services.AddTransient<CriarContaFuncionarioCommandHandler, CriarContaFuncionarioCommandHandler>();
+
+
+            #endregion
+
+            #region Injeção Dependência Usuario Empresa
+            services.AddTransient<IUsuarioEmpresaRepository, UsuarioEmpresaRepository>();
+            services.AddTransient<CriarContaEmpresaCommandHandler, CriarContaEmpresaCommandHandler>();
 
 
             #endregion
