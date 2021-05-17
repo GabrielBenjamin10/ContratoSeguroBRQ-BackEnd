@@ -1,15 +1,16 @@
-﻿using Classificados.Comum.Util;
+﻿
 using ContratoSeguro.Comum.Commands;
 using ContratoSeguro.Comum.Handlers;
+using ContratoSeguro.Comum.Utills;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Repositories;
 
 namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
-    public class LogarHandler : IHandlerCommand<LogarCommandRecrutado>
+    public class LogarFuncionarioRecrutadoCommandHandler : IHandlerCommand<LogarCommandRecrutado>
     {
         private readonly IUsuarioRecrutadoRepository _recrutadoRepository;
-        public LogarHandler(IUsuarioRecrutadoRepository repositorio)
+        public LogarFuncionarioRecrutadoCommandHandler(IUsuarioRecrutadoRepository repositorio)
         {
             _recrutadoRepository = repositorio;
         }

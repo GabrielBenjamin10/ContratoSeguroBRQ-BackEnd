@@ -1,6 +1,7 @@
-﻿using Classificados.Comum.Util;
+﻿
 using ContratoSeguro.Comum.Commands;
 using ContratoSeguro.Comum.Handlers;
+using ContratoSeguro.Comum.Utills;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Entidades;
 using ContratoSeguro.Dominio.Repositories;

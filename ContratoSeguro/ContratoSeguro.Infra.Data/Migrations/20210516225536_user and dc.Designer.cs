@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContratoSeguro.Infra.Data.Migrations
 {
     [DbContext(typeof(ContratoSeguroContext))]
-    [Migration("20210514191219_User")]
-    partial class User
+    [Migration("20210516225536_user and dc")]
+    partial class useranddc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,62 @@ namespace ContratoSeguro.Infra.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.DocumentoRecrutado", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DateTime")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DateTime")
+                        .HasDefaultValueSql("GetDate()");
+
+                    b.Property<DateTime>("DataExpiracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<Guid>("IdUsuarioFuncionario")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<string>("NomeDocumento")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Sentimento")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Sucesso")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("UsuarioFuncionarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioFuncionarioId");
+
+                    b.ToTable("DocumentoRecrutado");
+                });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.UserEmpresa", b =>
                 {
@@ -205,6 +261,15 @@ namespace ContratoSeguro.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UsuariosRecrutado");
+                });
+
+            modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.DocumentoRecrutado", b =>
+                {
+                    b.HasOne("ContratoSeguro.Dominio.Entidades.UserFuncionario", "UsuarioFuncionario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioFuncionarioId");
+
+                    b.Navigation("UsuarioFuncionario");
                 });
 #pragma warning restore 612, 618
         }

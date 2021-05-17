@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContratoSeguro.Infra.Data.Migrations
 {
-    public partial class User : Migration
+    public partial class useranddc : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,18 +74,54 @@ namespace ContratoSeguro.Infra.Data.Migrations
                 {
                     table.PrimaryKey("PK_UsuariosRecrutado", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "DocumentoRecrutado",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    NomeDocumento = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Sentimento = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    Sucesso = table.Column<bool>(type: "bit", nullable: false),
+                    DataExpiracao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdUsuarioFuncionario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuarioFuncionarioId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    Nome = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
+                    DataCriacao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()"),
+                    DataAlteracao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentoRecrutado", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DocumentoRecrutado_UsuariosFuncionario_UsuarioFuncionarioId",
+                        column: x => x.UsuarioFuncionarioId,
+                        principalTable: "UsuariosFuncionario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentoRecrutado_UsuarioFuncionarioId",
+                table: "DocumentoRecrutado",
+                column: "UsuarioFuncionarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "DocumentoRecrutado");
+
+            migrationBuilder.DropTable(
                 name: "UsuariosEmpresa");
 
             migrationBuilder.DropTable(
-                name: "UsuariosFuncionario");
+                name: "UsuariosRecrutado");
 
             migrationBuilder.DropTable(
-                name: "UsuariosRecrutado");
+                name: "UsuariosFuncionario");
         }
     }
 }

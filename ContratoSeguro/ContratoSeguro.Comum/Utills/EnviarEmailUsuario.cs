@@ -15,7 +15,7 @@ namespace ContratoSeguro.Comum.Utills
             try
             {
                 MailMessage _message = new MailMessage();
-                _message.From = new MailAddress("attackondev@gmail.com");
+                _message.From = new MailAddress("segurocontrato095@gmail.com");
 
                 //Email de destino
                 _message.CC.Add(_emailDestino);
@@ -40,7 +40,7 @@ namespace ContratoSeguro.Comum.Utills
                 _smtpClient.UseDefaultCredentials = false;
 
                 //Definindo as credenciais de envio
-                _smtpClient.Credentials = new NetworkCredential("attackondev@gmail.com", "*Attackondev123*");
+                _smtpClient.Credentials = new NetworkCredential("segurocontrato095@gmail.com", "*Contratoseguro123*");
 
                 //Configurando a configuração do ssl
                 _smtpClient.EnableSsl = true;
@@ -54,7 +54,7 @@ namespace ContratoSeguro.Comum.Utills
             }
             catch (Exception a)
             {
-                throw a ;
+                throw a;
             }
         }
     }

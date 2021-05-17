@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class UserEmpresa : Entidade
+    public class UserEmpresa : EntidadeUsuario
     {
         public UserEmpresa(string nome, string email, string senha, EnTipoUsuario tipoUsuario, string cNPJ, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura)
         {

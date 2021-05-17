@@ -1,5 +1,4 @@
 ﻿using ContratoSeguro.Dominio.Entidades;
-using ContratoSeguro.Dominio.Entidades;
 using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,6 +19,7 @@ namespace ContratoSeguro.Infra.Data.Context
         public DbSet<UserFuncionario> UsuariosFuncionario { get; set; }
         public DbSet<UserRecrutado> UsuariosRecrutado { get; set; }
         public DbSet<UserEmpresa> UsuariosEmpresa { get; set; }
+        public DbSet<DocumentoRecrutado> DocumentosRecrutado { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -181,6 +181,47 @@ namespace ContratoSeguro.Infra.Data.Context
             //DataAlteracao
             modelBuilder.Entity<UserEmpresa>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
             modelBuilder.Entity<UserEmpresa>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
+
+
+            #endregion
+
+            #region Mapeamento Tabela Documento Recrutado
+            modelBuilder.Entity<DocumentoRecrutado>().ToTable("DocumentoRecrutado");
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Id);
+
+            //NomeDocumento
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.NomeDocumento).HasMaxLength(100);
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Nome).HasColumnType("varchar(100)");
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Nome).IsRequired();
+
+            //Sentimento
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Sentimento).HasMaxLength(80);
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Email).HasColumnType("varchar(80)");
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Email).IsRequired();
+
+            //Sucesso
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Sucesso).HasColumnType("bit");
+
+            //Status
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Status).HasColumnType("int");
+
+            //Nome
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Nome).HasMaxLength(40);
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Nome).HasColumnType("varchar(40)");
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Nome).IsRequired();
+
+            //Email
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Email).HasMaxLength(40);
+            modelBuilder.Entity<DocumentoRecrutado>().Property(x => x.Email).HasColumnType("varchar(40)");
+            modelBuilder.Entity<Dominio.Entidades.DocumentoRecrutado>().Property(x => x.Email).IsRequired();
+
+            //DataCriacao
+            modelBuilder.Entity<DocumentoRecrutado>().Property(t => t.DataCriacao).HasColumnType("DateTime");
+            modelBuilder.Entity<DocumentoRecrutado>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
+
+            //DataAlteracao
+            modelBuilder.Entity<DocumentoRecrutado>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
+            modelBuilder.Entity<DocumentoRecrutado>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
 
 
             #endregion

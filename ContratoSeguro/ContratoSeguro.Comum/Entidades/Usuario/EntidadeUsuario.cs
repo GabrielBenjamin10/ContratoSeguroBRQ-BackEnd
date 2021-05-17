@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Comum.Entidades
 {
-    public class Entidade : Notifiable
+    public class EntidadeUsuario : Notifiable
     {
-        public Entidade()
+        public EntidadeUsuario()
         {
             Id = Guid.NewGuid();
             DataCriacao = DateTime.Now;

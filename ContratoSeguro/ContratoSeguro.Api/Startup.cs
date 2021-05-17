@@ -1,6 +1,8 @@
 
+using ContratoSeguro.Dominio.Handlers.Command.Documento;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Repositories;
+using ContratoSeguro.Dominio.Repositories.Documento;
 using ContratoSeguro.Infra.Data.Context;
 using ContratoSeguro.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -66,7 +68,7 @@ namespace ContratoSeguro_Api
             services.AddTransient<IUsuarioRecrutadoRepository, UsuarioRecrutadoRepository>();
             services.AddTransient<CriarContaRecrutadoCommandHandler, CriarContaRecrutadoCommandHandler>();
             services.AddTransient<EsqueciMinhaSenhaCommandHandler, EsqueciMinhaSenhaCommandHandler>();
-            services.AddTransient<LogarHandler, LogarHandler>();
+            services.AddTransient<LogarFuncionarioRecrutadoCommandHandler, LogarFuncionarioRecrutadoCommandHandler>();
 
 
             #endregion
@@ -81,6 +83,14 @@ namespace ContratoSeguro_Api
             #region Injeção Dependência Usuario Empresa
             services.AddTransient<IUsuarioEmpresaRepository, UsuarioEmpresaRepository>();
             services.AddTransient<CriarContaEmpresaCommandHandler, CriarContaEmpresaCommandHandler>();
+            services.AddTransient<LogarEmpresaCommandHandler, LogarEmpresaCommandHandler>();
+
+
+            #endregion
+
+            #region Injeção Dependência Documento Recrutado
+            services.AddTransient<IDocumentoRecrutado, DocumentoRecrutadoRepository>();
+            services.AddTransient<EnviarDocumentoRecrutadoCommandHandler, EnviarDocumentoRecrutadoCommandHandler>();
 
 
             #endregion

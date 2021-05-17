@@ -4,9 +4,9 @@ using Flunt.Validations;
 
 namespace ContratoSeguro.Dominio.Commands.Usuarios
 {
-    public class LogarCommand : Notifiable, ICommand
+    public class LogarCommandEmpresa : Notifiable, ICommand
     {
-        public LogarCommand(string cnpj, string email, string senha)
+        public LogarCommandEmpresa(string cnpj, string email, string senha)
         {
             Email = email;
             Senha = senha;
@@ -21,9 +21,9 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
             AddNotifications(new Contract()
              .Requires()
              .IsEmail(Email, "Email", "Informe um e-mail válido")
-             .HasMinLen(Senha, 6, "Nome", "A senha deve ter pelo menos 6 caracteres")
-             .HasMinLen(Cnpj, 11, "CPF", "Nome deve conter pelo menos 11 caracteres.")
-             .HasMaxLen(Cnpj, 11, "CPF", "Nome deve conter no máximo 11 caracteres.")
+             .HasMinLen(Senha, 6, "Senha", "A senha deve ter pelo menos 6 caracteres")
+             .HasMinLen(Cnpj, 14, "Cnpj", "CNPJ deve conter pelo menos 11 caracteres.")
+             .HasMaxLen(Cnpj, 14, "Cnpj", "O CNPJ deve conter no máximo 11 caracteres.")
                 );
         }
 
