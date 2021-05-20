@@ -12,14 +12,14 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
 {
     public class CriarContaEmpresaCommand : Notifiable, ICommand
     {
-        public CriarContaEmpresaCommand(string nome, string email, string senha, string telefone, string cNPJ, EnTipoUsuario tipoUsuario, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura)
+        public CriarContaEmpresaCommand(string nome, string email, string senha, string telefone, string cNPJ, EnTipoUsuario tipo, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
             Telefone = telefone;
             CNPJ = cNPJ;
-            TipoUsuario = tipoUsuario;
+            Tipo = tipo;
             RazaoSocial = razaoSocial;
             Matriz = matriz;
             Logradouro = logradouro;
@@ -35,7 +35,6 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
         public string Senha { get; set; }
         public string Telefone { get; set; }
         public string CNPJ { get; set; }
-        public EnTipoUsuario TipoUsuario { get; set; }
         public string RazaoSocial { get; set; }
         public string Matriz { get; set; }
         public string Logradouro { get; set; }
@@ -44,6 +43,7 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
         public string Numero { get; set; }
         public string Bairro { get; set; }
         public DateTime DataAbertura { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
 
         public void Validar()
         {
@@ -54,7 +54,7 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
                .HasMaxLen(Nome, 40, "Nome", "Nome deve conter no máximo 40 caracteres.")
                .IsEmail(Email, "Email", "Informe um e-mail válido")
                .HasMinLen(Senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
-               .HasMinLen(CNPJ, 14, "CNPJ", "O seu numero de CPF deve conter no minimo e no maximo 11 digitos.")
+               .HasMinLen(CNPJ, 14, "CNPJ", "O seu numero de CNPJ deve conter no minimo e no maximo 14 digitos.")
                .HasMaxLen(Matriz, 40, "Matriz", "A matriz  deve conter no máximo 40 caracteres")
                .HasMinLen(Numero, 1, "Numero", "O numero deve conter no minimo 1 digito")
 

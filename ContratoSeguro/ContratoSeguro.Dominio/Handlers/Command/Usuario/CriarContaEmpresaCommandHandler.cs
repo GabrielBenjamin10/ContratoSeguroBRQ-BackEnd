@@ -45,7 +45,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             command.Senha = Senha.Criptografar(command.Senha);
 
             //Salvar Usuário
-            var usuario = new Entidades.UserEmpresa(command.Nome, command.Email, command.Senha, command.TipoUsuario, command.CNPJ, command.RazaoSocial,command.Matriz, command.Logradouro, command.UF, command.Cidade, command.Numero, command.Bairro, command.DataAbertura);
+            var usuario = new Entidades.Empresa(command.Nome, command.Email, command.Senha,  command.CNPJ, command.RazaoSocial,command.Matriz, command.Logradouro, command.UF, command.Cidade, command.Numero, command.Bairro, command.DataAbertura, command.Tipo);
 
             if (usuario.Invalid)
                 return new GenericCommandResult(false, "Usuário Inválido", usuario.Notifications);

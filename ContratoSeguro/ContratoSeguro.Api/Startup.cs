@@ -1,8 +1,6 @@
 
-using ContratoSeguro.Dominio.Handlers.Command.Documento;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Repositories;
-using ContratoSeguro.Dominio.Repositories.Documento;
 using ContratoSeguro.Infra.Data.Context;
 using ContratoSeguro.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ContratoSeguro.Comum.Utills.EnviarEmailUsuario;
 
 namespace ContratoSeguro_Api
 {
@@ -87,13 +86,11 @@ namespace ContratoSeguro_Api
 
 
             #endregion
-
-            #region Injeção Dependência Documento Recrutado
-            services.AddTransient<IDocumentoRecrutado, DocumentoRecrutadoRepository>();
-            services.AddTransient<EnviarDocumentoRecrutadoCommandHandler, EnviarDocumentoRecrutadoCommandHandler>();
-
-
+            #region Injeção Dependência Utils
+            services.AddTransient<IMailService, SendGridMailService>();
             #endregion
+
+
 
             //SWAGGER
             services.AddSwaggerGen(c =>

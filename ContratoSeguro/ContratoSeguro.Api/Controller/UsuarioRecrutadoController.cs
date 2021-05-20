@@ -34,14 +34,8 @@ namespace ContratoSeguro.Api.Controller
             return resultado;
         }
 
-        /// <summary>
-        /// Cadastra um recrutado
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="handler"></param>
-        /// <returns>Usuario cadastrado</returns>
         [Route("signup")]
-        //[Authorize(Roles = "Empresa")]
+        //[Authorize(Roles = "Funcionario")]
         [HttpPost]
         //Aqui nós passamos como parametro os Command e Handler
         public GenericCommandResult SignupRecruitedUser(CriarContaRecrutadoCommand command,
@@ -51,35 +45,6 @@ namespace ContratoSeguro.Api.Controller
 
             return (GenericCommandResult)handler.Handle(command);
         }
-
-
-        // Criamos nosso método que vai gerar nosso Token
-        private string GerarJSONWebToken(UserRecrutado userInfo)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguroApi"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            // Definimos nossas Claims (dados da sessão) para poderem ser capturadas
-            // a qualquer momento enquanto o Token for ativo
-            var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Nome),
-                new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                new Claim(ClaimTypes.Role, userInfo.TipoUsuario.ToString()),
-                new Claim("role", userInfo.TipoUsuario.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
-            };
-
-            // Configuramos nosso Token e seu tempo de vida
-            var token = new JwtSecurityToken
-                (
-                    "contratoseguro",
-                    "contratoseguro",
-                    claims,
-                    expires: DateTime.Now.AddMinutes(120),
-                    signingCredentials: credentials
-                );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        
     }
 }

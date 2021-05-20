@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ContratoSeguro.Comum.Utills.EnviarEmailUsuario;
 
 namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
@@ -16,11 +17,13 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
     {
         //Chamamos nosso repositório
         private readonly IUsuarioRecrutadoRepository _repository;
+        private readonly IMailService _emailService;
 
         //Realizamos nossa injeção de dependência
-        public EsqueciMinhaSenhaCommandHandler(IUsuarioRecrutadoRepository repository)
+        public EsqueciMinhaSenhaCommandHandler(IUsuarioRecrutadoRepository repository, IMailService emailService)
         {
             _repository = repository;
+            _emailService = emailService;
         }
 
         public ICommandResult Handle(EsqueciMinhaSenhaCommand command)
@@ -50,7 +53,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 
             //TODO: Enviar email de SENHA NOVA
             //Enviar email de boas vindas
-            _ = EnviarEmailUsuario.EnviarEmail(usuario.Email, usuario.Nome, "Nova Senha", "Sua senha foi alterada", $"Sua nova senha é {senha}", null);
+            _emailService.SendEmailAsync(usuario.Email, $"Nova Senha {senha}", null);
 
             return new GenericCommandResult(true, "Uma nova senha foi criada e enviada para o seu e-mail, verifique!!!", null);
         }

@@ -15,7 +15,6 @@ namespace ContratoSeguro.Api.Controller
     public class UsuarioEmpresaController : ControllerBase
     {
         [Route("signup")]
-        //[Authorize(Roles = "")]
         [HttpPost]
         //Aqui nós passamos como parametro os Command e Handler
         public GenericCommandResult SignupCompanyUser(CriarContaEmpresaCommand command,

@@ -9,14 +9,14 @@ namespace ContratoSeguro.Dominio.Repositories
 {
     public interface IUsuarioFuncionarioRepository
     {
-        void Adicionar(UserFuncionario usuario);
-        void AlterarSenha(UserFuncionario usuario);
-        void Alterar(UserFuncionario usuario);
-        UserFuncionario BuscarPorEmail(string email);
-        UserFuncionario BuscarPorCPF(string cPF);
-        UserFuncionario BuscarPorId(Guid id);
-        UserFuncionario BuscarPorNome(string nome);
+        void Adicionar(Funcionario usuario);
+        void AlterarSenha(Funcionario usuario);
+        void Alterar(Funcionario usuario);
+        Funcionario BuscarPorEmail(string email);
+        Funcionario BuscarPorCPF(string cPF);
+        Funcionario BuscarPorId(Guid id);
+        Funcionario BuscarPorNome(string nome);
 
-        ICollection<UserFuncionario> Listar();
+        ICollection<Funcionario> Listar();
     }
 }

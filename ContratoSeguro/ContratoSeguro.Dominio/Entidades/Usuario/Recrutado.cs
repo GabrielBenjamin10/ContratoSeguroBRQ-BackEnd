@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class UserFuncionario : EntidadeUsuario
+    public class Recrutado : Entidade
     {
-        public UserFuncionario(string nome, string email, string senha, EnTipoUsuario tipoUsuario, string cPF, string rG, string formação, DateTime dataNascimento)
-        {
+        //Atributos Recrutado
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
+        public string CPF { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
 
+        public Recrutado(string nome, string email, string senha, string cPF, EnTipoUsuario tipo)
+        {
             AddNotifications(new Contract()
                 .Requires()
                 .HasMinLen(nome, 3, "Nome", "Nome deve conter pelo menos 3 caracteres.")
@@ -21,7 +28,6 @@ namespace ContratoSeguro.Dominio.Entidades
                 .IsEmail(email, "Email", "Informe um e-mail válido")
                 .HasMinLen(senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
                 .HasMinLen(cPF, 11, "CPF", "O seu numero de CPF deve conter no minimo e no maximo 11 digitos.")
-                .HasMinLen(rG, 9, "RG", "O seu numero de RG deve conter no minimo e no maximo 9 digitos.")
             );
 
             if (Valid)
@@ -29,19 +35,10 @@ namespace ContratoSeguro.Dominio.Entidades
                 Nome = nome;
                 Email = email;
                 Senha = senha;
-                TipoUsuario = tipoUsuario;
                 CPF = cPF;
-                RG = rG;
-                Formação = formação;
-                DataNascimento = dataNascimento;
+                Tipo = tipo;
             }
-
-        }
-
-        public string CPF { get; set; }
-        public string RG { get; set; }
-        public string Formação { get; set; }
-        public DateTime DataNascimento { get; set; }
+        } 
 
         public void AlterarSenha(string senha)
         {

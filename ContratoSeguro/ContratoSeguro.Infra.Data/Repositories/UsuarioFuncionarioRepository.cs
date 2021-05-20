@@ -19,48 +19,48 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context = context;
         }
 
-        public void Adicionar(UserFuncionario usuario)
+        public void Adicionar(Funcionario usuario)
         {
-            _context.UsuariosFuncionario.Add(usuario);
+            _context.Funcionario.Add(usuario);
             _context.SaveChanges();
         }
 
-        public void Alterar(UserFuncionario usuario)
+        public void Alterar(Funcionario usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void AlterarSenha(UserFuncionario usuario)
+        public void AlterarSenha(Funcionario usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public UserFuncionario BuscarPorCPF(string cPF)
+        public Funcionario BuscarPorCPF(string cPF)
         {
-            return _context.UsuariosFuncionario.FirstOrDefault(u => u.CPF == cPF);
+            return _context.Funcionario.FirstOrDefault(u => u.CPF == cPF);
         }
 
-        public UserFuncionario BuscarPorEmail(string email)
+        public Funcionario BuscarPorEmail(string email)
         {
             
-            return _context.UsuariosFuncionario.FirstOrDefault(u => u.Email == email);
+            return _context.Funcionario.FirstOrDefault(u => u.Email == email);
         }
 
-        public UserFuncionario BuscarPorId(Guid id)
+        public Funcionario BuscarPorId(Guid id)
         {
-            return _context.UsuariosFuncionario.FirstOrDefault(p => p.Id == id);
+            return _context.Funcionario.FirstOrDefault(p => p.Id == id);
         }
 
-        public UserFuncionario BuscarPorNome(string nome)
+        public Funcionario BuscarPorNome(string nome)
         {
-            return _context.UsuariosFuncionario.FirstOrDefault(p => p.Nome == nome);
+            return _context.Funcionario.FirstOrDefault(p => p.Nome == nome);
         }
 
-        public ICollection<UserFuncionario> Listar()
+        public ICollection<Funcionario> Listar()
         {
-            return _context.UsuariosFuncionario
+            return _context.Funcionario
                     .AsNoTracking()
                     .OrderBy(u => u.DataCriacao)
                     .ToList();

@@ -11,27 +11,24 @@ namespace ContratoSeguro.Dominio.Command.Usuarios
 {
     public class CriarContaRecrutadoCommand : Notifiable, ICommand
     {
-        public CriarContaRecrutadoCommand()
-        {
+        //Atributos Recrutado
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
+        public string CPF { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
 
-        }
-
-        public CriarContaRecrutadoCommand(string nome, string email, string senha, string telefone, string cPF, EnTipoUsuario tipoUsuario)
+        public CriarContaRecrutadoCommand(string nome, string email, string senha, string telefone, string cPF, EnTipoUsuario tipo)
         {
             Nome = nome;
             Email = email;
             Senha = senha;
             Telefone = telefone;
             CPF = cPF;
-            TipoUsuario = tipoUsuario;
+            Tipo = tipo;
         }
 
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
-        public string Telefone { get; set; }
-        public string CPF { get; set; }
-        public EnTipoUsuario TipoUsuario { get; set; }
         public void Validar()
         {
             AddNotifications(new Contract()

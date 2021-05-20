@@ -7,14 +7,14 @@ namespace ContratoSeguro.Dominio.Repositories
 {
     public interface IUsuarioRecrutadoRepository
     {
-        void Adicionar(UserRecrutado usuario);
-        void AlterarSenha(UserRecrutado usuario);
-        void Alterar(UserRecrutado usuario);
-        UserRecrutado BuscarPorEmail(string email);
-        UserRecrutado BuscarPorCPF(string cPF);
-        UserRecrutado BuscarPorId(Guid id);
-        UserRecrutado BuscarPorNome(string nome);
+        void Adicionar(Recrutado usuario);
+        void AlterarSenha(Recrutado usuario);
+        void Alterar(Recrutado usuario);
+        Recrutado BuscarPorEmail(string email);
+        Recrutado BuscarPorCPF(string cPF);
+        Recrutado BuscarPorId(Guid id);
+        Recrutado BuscarPorNome(string nome);
 
-        ICollection<UserRecrutado> Listar();
+        ICollection<Recrutado> Listar();
     }
 }

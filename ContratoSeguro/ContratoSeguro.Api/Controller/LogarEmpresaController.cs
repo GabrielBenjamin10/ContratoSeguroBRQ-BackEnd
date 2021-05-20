@@ -19,7 +19,7 @@ namespace ContratoSeguro.Api.Controller
     [ApiController]
     public class LogarEmpresa : ControllerBase
     {
-        [Route("signin/empresa")]
+        [Route("signin")]
         [HttpPost]
         public GenericCommandResult SignIn(LogarCommandEmpresa command, [FromServices] LogarEmpresaCommandHandler handler)
         {
@@ -27,7 +27,7 @@ namespace ContratoSeguro.Api.Controller
 
             if (resultado.Sucesso)
             {
-                var token = GerarJSONWebToken((UserEmpresa)resultado.Data);
+                var token = GerarJSONWebToken((Empresa)resultado.Data);
 
                 return new GenericCommandResult(resultado.Sucesso, resultado.Mensagem, new { token = token });
             }
@@ -36,7 +36,7 @@ namespace ContratoSeguro.Api.Controller
 
         }
 
-        private string GerarJSONWebToken(UserEmpresa userInfo)
+        private string GerarJSONWebToken(Empresa userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -46,8 +46,8 @@ namespace ContratoSeguro.Api.Controller
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Nome),
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                new Claim(ClaimTypes.Role, userInfo.TipoUsuario.ToString()),
-                new Claim("role", userInfo.TipoUsuario.ToString()),
+                new Claim(ClaimTypes.Role, userInfo.Tipo.ToString()),
+                new Claim("role", userInfo.Tipo.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
             };
 

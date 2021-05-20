@@ -19,48 +19,48 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context = context;
         }
 
-        public void Adicionar(UserEmpresa usuario)
+        public void Adicionar(Empresa usuario)
         {
-            _context.UsuariosEmpresa.Add(usuario);
+            _context.Empresa.Add(usuario);
             _context.SaveChanges();
         }
 
-        public void Alterar(UserEmpresa usuario)
+        public void Alterar(Empresa usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void AlterarSenha(UserEmpresa usuario)
+        public void AlterarSenha(Empresa usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public UserEmpresa BuscarPorCNPJ(string cNPJ)
+        public Empresa BuscarPorCNPJ(string cNPJ)
         {
-            return _context.UsuariosEmpresa.FirstOrDefault(u => u.CNPJ == cNPJ);
+            return _context.Empresa.FirstOrDefault(u => u.CNPJ == cNPJ);
         }
 
-        public UserEmpresa BuscarPorEmail(string email)
+        public Empresa BuscarPorEmail(string email)
         {
-            return _context.UsuariosEmpresa.FirstOrDefault(u => u.Email == email);
+            return _context.Empresa.FirstOrDefault(u => u.Email == email);
 
         }
 
-        public UserEmpresa BuscarPorId(Guid id)
+        public Empresa BuscarPorId(Guid id)
         {
-            return _context.UsuariosEmpresa.FirstOrDefault(p => p.Id == id);
+            return _context.Empresa.FirstOrDefault(p => p.Id == id);
         }
 
-        public UserEmpresa BuscarPorNome(string nome)
+        public Empresa BuscarPorNome(string nome)
         {
-            return _context.UsuariosEmpresa.FirstOrDefault(p => p.Nome == nome);
+            return _context.Empresa.FirstOrDefault(p => p.Nome == nome);
         }
 
-        public ICollection<UserEmpresa> Listar()
+        public ICollection<Empresa> Listar()
         {
-            return _context.UsuariosEmpresa
+            return _context.Empresa
                     .AsNoTracking()
                     .OrderBy(u => u.DataCriacao)
                     .ToList();

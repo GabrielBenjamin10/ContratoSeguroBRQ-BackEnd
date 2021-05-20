@@ -27,7 +27,7 @@ namespace ContratoSeguro.Api.Controller
             
             if (resultado.Sucesso)
             {
-                var token = GerarJSONWebToken((UserRecrutado)resultado.Data);
+                var token = GerarJSONWebToken((Recrutado)resultado.Data);
 
                 return new GenericCommandResult(resultado.Sucesso, resultado.Mensagem, new { token = token });
             }
@@ -36,7 +36,7 @@ namespace ContratoSeguro.Api.Controller
 
         }
 
-        private string GerarJSONWebToken(UserRecrutado userInfo)
+        private string GerarJSONWebToken(Recrutado userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -46,8 +46,8 @@ namespace ContratoSeguro.Api.Controller
             var claims = new[] {
                 new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Nome),
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
-                new Claim(ClaimTypes.Role, userInfo.TipoUsuario.ToString()),
-                new Claim("role", userInfo.TipoUsuario.ToString()),
+                new Claim(ClaimTypes.Role, userInfo.Tipo.ToString()),
+                new Claim("role", userInfo.Tipo.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
             };
 

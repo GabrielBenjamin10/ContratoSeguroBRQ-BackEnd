@@ -18,47 +18,47 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context = context;
         }
 
-        public void Adicionar(UserRecrutado usuario)
+        public void Adicionar(Recrutado usuario)
         {
-            _context.UsuariosRecrutado.Add(usuario);
+            _context.Recrutado.Add(usuario);
             _context.SaveChanges();
         }
-        public void Alterar(UserRecrutado usuario)
+        public void Alterar(Recrutado usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
 
-        public void AlterarSenha(UserRecrutado usuario)
+        public void AlterarSenha(Recrutado usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public UserRecrutado BuscarPorEmail(string email)
+        public Recrutado BuscarPorEmail(string email)
         {
-            return _context.UsuariosRecrutado.FirstOrDefault(u => u.Email == email);
+            return _context.Recrutado.FirstOrDefault(u => u.Email == email);
         }
-        public UserRecrutado BuscarPorCPF(string cPF)
+        public Recrutado BuscarPorCPF(string cPF)
         {
-            return _context.UsuariosRecrutado.FirstOrDefault(u => u.CPF == cPF);
-        }
-
-        public UserRecrutado BuscarPorId(Guid id)
-        {
-            return _context.UsuariosRecrutado.FirstOrDefault(p => p.Id == id);
-
+            return _context.Recrutado.FirstOrDefault(u => u.CPF == cPF);
         }
 
-        public UserRecrutado BuscarPorNome(string nome)
+        public Recrutado BuscarPorId(Guid id)
         {
-            return _context.UsuariosRecrutado.FirstOrDefault(p => p.Nome == nome);
+            return _context.Recrutado.FirstOrDefault(p => p.Id == id);
+
         }
 
-        public ICollection<UserRecrutado> Listar()
+        public Recrutado BuscarPorNome(string nome)
         {
-            return _context.UsuariosRecrutado
+            return _context.Recrutado.FirstOrDefault(p => p.Nome == nome);
+        }
+
+        public ICollection<Recrutado> Listar()
+        {
+            return _context.Recrutado
                      .AsNoTracking()
                      .OrderBy(u => u.DataCriacao)
                      .ToList();

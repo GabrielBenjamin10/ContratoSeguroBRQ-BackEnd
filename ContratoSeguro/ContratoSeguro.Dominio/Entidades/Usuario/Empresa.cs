@@ -9,9 +9,26 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class UserEmpresa : EntidadeUsuario
+    public class Empresa : Entidade
     {
-        public UserEmpresa(string nome, string email, string senha, EnTipoUsuario tipoUsuario, string cNPJ, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura)
+
+        //Atributos Empresa
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
+        public string CNPJ { get; set; }
+        public string RazaoSocial { get; set; }
+        public string Matriz { get; set; }
+        public string Logradouro { get; set; }
+        public string UF { get; set; }
+        public string Cidade { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public DateTime DataAbertura { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
+
+        public Empresa(string nome, string email, string senha, string cNPJ, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura, EnTipoUsuario tipo)
         {
 
 
@@ -21,7 +38,7 @@ namespace ContratoSeguro.Dominio.Entidades
                .HasMaxLen(nome, 40, "Nome", "Nome deve conter no máximo 40 caracteres.")
                .IsEmail(email, "Email", "Informe um e-mail válido")
                .HasMinLen(senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
-               .HasMinLen(cNPJ, 14, "CNPJ", "O seu numero de CPF deve conter no minimo e no maximo 11 digitos.")
+               .HasMinLen(cNPJ, 14, "CNPJ", "O CNPJ deve conter no minimo e no maximo 11 digitos.")
                .HasMaxLen(matriz, 40, "Matriz", "A matriz  deve conter no máximo 40 caracteres")
                .HasMinLen(numero, 1, "Numero", "O numero deve conter no minimo 1 digito")
 
@@ -33,7 +50,6 @@ namespace ContratoSeguro.Dominio.Entidades
                 Nome = nome;
                 Email = email;
                 Senha = senha;
-                TipoUsuario = tipoUsuario;
                 CNPJ = cNPJ;
                 RazaoSocial = razaoSocial;
                 Matriz = matriz;
@@ -43,18 +59,10 @@ namespace ContratoSeguro.Dominio.Entidades
                 Numero = numero;
                 Bairro = bairro;
                 DataAbertura = dataAbertura;
+                Tipo = tipo;
             }
 
         }
 
-        public string CNPJ { get; set; }
-        public string RazaoSocial { get; set; }
-        public string Matriz { get; set; }
-        public string Logradouro { get; set; }
-        public string UF { get; set; }
-        public string Cidade { get; set; }
-        public string Numero { get; set; }
-        public string Bairro { get; set; }
-        public DateTime DataAbertura { get; set; }
     }
 }

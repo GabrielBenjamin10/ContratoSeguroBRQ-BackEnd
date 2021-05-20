@@ -9,11 +9,24 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class UserRecrutado : EntidadeUsuario
+    public class Funcionario : Entidade
     {
+        //Atributos Funcionario
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Telefone { get; set; }
+        public string CPF { get; set; }
+        public string RG { get; set; }
+        public string Formação { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
 
-        public UserRecrutado(string nome, string email, string senha,  EnTipoUsuario tipoUsuario, string cPF)
+
+        // Notificações - FLunt
+        public Funcionario(string nome, string email, string senha,  string cPF, string rG, string formação, DateTime dataNascimento, EnTipoUsuario tipo)
         {
+
             AddNotifications(new Contract()
                 .Requires()
                 .HasMinLen(nome, 3, "Nome", "Nome deve conter pelo menos 3 caracteres.")
@@ -21,6 +34,7 @@ namespace ContratoSeguro.Dominio.Entidades
                 .IsEmail(email, "Email", "Informe um e-mail válido")
                 .HasMinLen(senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
                 .HasMinLen(cPF, 11, "CPF", "O seu numero de CPF deve conter no minimo e no maximo 11 digitos.")
+                .HasMinLen(rG, 9, "RG", "O seu numero de RG deve conter no minimo e no maximo 9 digitos.")
             );
 
             if (Valid)
@@ -28,12 +42,15 @@ namespace ContratoSeguro.Dominio.Entidades
                 Nome = nome;
                 Email = email;
                 Senha = senha;
-                TipoUsuario = tipoUsuario;
                 CPF = cPF;
+                RG = rG;
+                Formação = formação;
+                DataNascimento = dataNascimento;
+                Tipo = tipo;
             }
+
         }
 
-        public string CPF { get; set; }
 
         public void AlterarSenha(string senha)
         {

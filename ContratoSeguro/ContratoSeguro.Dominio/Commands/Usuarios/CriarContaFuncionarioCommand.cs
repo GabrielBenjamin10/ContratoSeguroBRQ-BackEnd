@@ -10,21 +10,6 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
 {
     public class CriarContaFuncionarioCommand : Notifiable, ICommand
     {
-        public CriarContaFuncionarioCommand()
-        {
-
-        }
-
-        public CriarContaFuncionarioCommand(string nome, string email, string senha, string telefone, string cPF, EnTipoUsuario tipoUsuario)
-        {
-            Nome = nome;
-            Email = email;
-            Senha = senha;
-            Telefone = telefone;
-            CPF = cPF;
-            TipoUsuario = tipoUsuario;
-        }
-
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
@@ -33,7 +18,18 @@ namespace ContratoSeguro.Dominio.Commands.Usuarios
         public string RG { get; set; }
         public string Formação { get; set; }
         public DateTime DataNascimento { get; set; }
-        public EnTipoUsuario TipoUsuario { get; set; }
+        public EnTipoUsuario Tipo { get; set; }
+
+        public CriarContaFuncionarioCommand(string nome, string email, string senha, string telefone, string cPF, EnTipoUsuario tipo)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+            Telefone = telefone;
+            CPF = cPF;
+            Tipo = tipo;
+        }
+
 
 
 

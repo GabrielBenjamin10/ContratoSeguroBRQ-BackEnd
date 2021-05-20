@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,52 +13,28 @@ namespace ContratoSeguro.Comum.Utills
 {
     public class EnviarEmailUsuario
     {
-        public static bool EnviarEmail(string _emailDestino, string _nomeUsuario, string _assuntoEmail, string _tituloEmail, string _mensagem, string _object)
+        public interface IMailService
         {
-            try
+            Task SendEmailAsync(string toEmail, string subject, string content);
+        }
+        public class SendGridMailService : IMailService
+        {
+            private IConfiguration _configuration;
+
+            public SendGridMailService(IConfiguration configuration)
             {
-                MailMessage _message = new MailMessage();
-                _message.From = new MailAddress("segurocontrato095@gmail.com");
-
-                //Email de destino
-                _message.CC.Add(_emailDestino);
-
-                //Conteudo do email
-                _message.Subject = _assuntoEmail;
-
-                //Definindo o corpo do email
-                _message.IsBodyHtml = true;
-
-                //Conteudo do corpo do email
-                _message.Body = (_object == null ?
-                                                    $"<b>{_nomeUsuario}, {_tituloEmail}</b><p>{_mensagem}</p>"
-                                                 :
-                                                    $"<b>{_nomeUsuario}, {_tituloEmail}</b><p>{_mensagem} <strong>{_object}</strong></p>"
-                                );
-
-                //Configurando a porta smtp
-                SmtpClient _smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32("587"));
-
-                //Defininfo o uso de credenciais para o envio de email
-                _smtpClient.UseDefaultCredentials = false;
-
-                //Definindo as credenciais de envio
-                _smtpClient.Credentials = new NetworkCredential("segurocontrato095@gmail.com", "*Contratoseguro123*");
-
-                //Configurando a configuração do ssl
-                _smtpClient.EnableSsl = true;
-
-                //Enviando o email
-                _smtpClient.Send(_message);
-
-                //retornando sucesso
-                return true;
-
+                _configuration = configuration;
             }
-            catch (Exception a)
+            public async Task SendEmailAsync(string toEmail, string subject, string content)
             {
-                throw a;
+                var apiKey = _configuration["SendGridAPIKey"];
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("kauakarate@hotmail.com", "JWT Auth Demo");
+                var to = new EmailAddress(toEmail);
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
+                var response = await client.SendEmailAsync(msg);
             }
+
         }
     }
 }
