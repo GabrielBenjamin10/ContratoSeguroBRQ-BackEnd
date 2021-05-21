@@ -53,7 +53,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 
             //TODO: Enviar email de SENHA NOVA
             //Enviar email de boas vindas
-            _emailService.SendEmailAsync(usuario.Email, $"Nova Senha {senha}", null);
+            _emailService.SendEmailAsync(usuario.Email, "Senha alterada", $"Sua Senha nova é: {senha}");
 
             return new GenericCommandResult(true, "Uma nova senha foi criada e enviada para o seu e-mail, verifique!!!", null);
         }

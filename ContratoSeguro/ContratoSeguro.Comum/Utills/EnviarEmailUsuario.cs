@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Handlers;
+using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
@@ -11,11 +13,15 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Comum.Utills
 {
-    public class EnviarEmailUsuario
+    public class EnviarEmailUsuario 
     {
         public interface IMailService
         {
-            Task SendEmailAsync(string toEmail, string subject, string content);
+            Task SendEmailAsync(string toEmail, string subject, string content );
+            Task SendEmailAsyncCompany(string toEmail, string subject, string content);
+            Task SendEmailAsyncEmployee(string toEmail, string subject, string content);
+            Task SendEmailAsyncRecruted(string toEmail,  string subject,  string content);
+
         }
         public class SendGridMailService : IMailService
         {
@@ -25,16 +31,49 @@ namespace ContratoSeguro.Comum.Utills
             {
                 _configuration = configuration;
             }
-            public async Task SendEmailAsync(string toEmail, string subject, string content)
+            public async Task SendEmailAsync(string toEmail, string subject, string content )
             {
-                var apiKey = _configuration["SendGridAPIKey"];
+                var apiKey = "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";
                 var client = new SendGridClient(apiKey);
-                var from = new EmailAddress("kauakarate@hotmail.com", "JWT Auth Demo");
-                var to = new EmailAddress(toEmail);
-                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
+                var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
+                var to = new EmailAddress("recrutadoteste003@gmail.com", "Gustavo Silva");
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
+                var response = await client.SendEmailAsync(msg);
+            }
+            //Empresa
+            public async Task SendEmailAsyncCompany(string toEmail, string subject, string content)
+            {
+                var apiKey = "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";
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
+                var to = new EmailAddress("empresateste001@gmail.com", "Senai Informática 132");
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
+                var response = await client.SendEmailAsync(msg);
+            }
+
+            //Funcionario
+            public async Task SendEmailAsyncEmployee(string toEmail, string subject, string content )
+            {
+                var apiKey = "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";
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
+                var to = new EmailAddress("funcionarioTeste001@gmail.com", "Eduardo Silva");
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
+                var response = await client.SendEmailAsync(msg);
+            }
+
+            //Recrutado
+            public async Task SendEmailAsyncRecruted(string toEmail, string subject ,string content)
+            {  
+                var apiKey = "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";
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
+                var to = new EmailAddress("recrutadoteste003@gmail.com", "Kaua Deja");
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
                 var response = await client.SendEmailAsync(msg);
             }
 
         }
     }
 }
+

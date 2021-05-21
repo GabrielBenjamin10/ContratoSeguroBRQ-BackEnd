@@ -11,15 +11,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ContratoSeguro.Comum.Utills.EnviarEmailUsuario;
 
 namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
     public class CriarContaEmpresaCommandHandler : Notifiable, IHandlerCommand<CriarContaEmpresaCommand>
     {
         private readonly IUsuarioEmpresaRepository _usuarioEmpresaRepositorio;
-        public CriarContaEmpresaCommandHandler(IUsuarioEmpresaRepository usuarioEmpresaRepositorio)
+        private readonly IMailService _emailService;
+
+        public CriarContaEmpresaCommandHandler(IUsuarioEmpresaRepository usuarioEmpresaRepositorio, IMailService emailService)
         {
             _usuarioEmpresaRepositorio = usuarioEmpresaRepositorio;
+            _emailService = emailService;
+
         }
 
         public ICommandResult Handle(CriarContaEmpresaCommand command)
@@ -31,15 +36,18 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados do usuário Inválidos", command.Notifications);
 
             //Verifica se cpf existe
-            var cpfExiste = _usuarioEmpresaRepositorio.BuscarPorCNPJ(command.CNPJ);
-            if (cpfExiste != null)
-                return new GenericCommandResult(false, "CNPJ já cadastrado", null);
+            //var cnpjExiste = _usuarioEmpresaRepositorio.BuscarPorCNPJ(command.CNPJ);
+            //if (cnpjExiste != null)
+            //    return new GenericCommandResult(false, "CNPJ já cadastrado", null);
 
-            //Verifica se email existe
-            var usuarioExiste = _usuarioEmpresaRepositorio.BuscarPorEmail(command.Email);
+            ////Verifica se email existe
+            //var usuarioExiste = _usuarioEmpresaRepositorio.BuscarPorEmail(command.Email);
 
-            if (usuarioExiste != null)
-                return new GenericCommandResult(false, "Email já cadastrado", null);
+            //if (usuarioExiste != null)
+            //    return new GenericCommandResult(false, "Email já cadastrado", null);
+
+            string senha = command.Senha;
+            string nome = command.Nome;
 
             //Criptografar Senha 
             command.Senha = Senha.Criptografar(command.Senha);
@@ -55,7 +63,9 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             //Enviar Email de Boas Vindas
             //Send Grid
 
-            return new GenericCommandResult(true, "Usuário Criado", null);
+            _emailService.SendEmailAsyncRecruted(usuario.Email, $"{nome}Senha Provisória: {senha}", null);
+
+            return new GenericCommandResult(true, "Usuário Criado! Verifique sua caixa de entrada para mais opções", null);
         }
     }
 }

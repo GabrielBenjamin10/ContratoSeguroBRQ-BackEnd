@@ -9,15 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ContratoSeguro.Comum.Utills.EnviarEmailUsuario;
 
 namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
      public class CriarContaFuncionarioCommandHandler : Notifiable, IHandlerCommand<CriarContaFuncionarioCommand>
     {
         private readonly IUsuarioFuncionarioRepository _usuarioFuncionarioRepositorio;
-        public CriarContaFuncionarioCommandHandler(IUsuarioFuncionarioRepository usuarioFuncionarioRepositorio)
+        private readonly IMailService _emailService;
+        public CriarContaFuncionarioCommandHandler(IUsuarioFuncionarioRepository usuarioFuncionarioRepositorio, IMailService emailService)
         {
             _usuarioFuncionarioRepositorio = usuarioFuncionarioRepositorio;
+            _emailService = emailService;
         }
 
         public ICommandResult Handle(CriarContaFuncionarioCommand command)
@@ -39,6 +42,14 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             if (usuarioExiste != null)
                 return new GenericCommandResult(false, "Email já cadastrado", null);
 
+            string senha = command.Senha;
+
+            string nome = command.Nome;
+
+            string cpf = command.CPF;
+
+            string email = command.Email;
+
             //Criptografar Senha 
             command.Senha = Senha.Criptografar(command.Senha);
 
@@ -52,8 +63,10 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 
             //Enviar Email de Boas Vindas
             //Send Grid
+            _emailService.SendEmailAsyncEmployee(usuario.Email, "Logue no sistema com as seguintes credenciais", $"Nome:{nome}\nEmail: {email}\nSenha: {senha}\nCPF: {cpf}");
 
-            return new GenericCommandResult(true, "Usuário Criado", null);
+
+            return new GenericCommandResult(true, "Usuário Criado! Verifique sua caixa de entrada para mais opções", null);
         }
     }
 }
