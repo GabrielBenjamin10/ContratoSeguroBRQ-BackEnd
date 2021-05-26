@@ -1,8 +1,12 @@
 ﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Dominio.Command.Usuarios;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Entidades;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
+using ContratoSeguro.Dominio.Handlers.Queries;
+using ContratoSeguro.Dominio.Handlers.Queries.Usuario;
+using ContratoSeguro.Dominio.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +49,29 @@ namespace ContratoSeguro.Api.Controller
 
             return (GenericCommandResult)handler.Handle(command);
         }
-        
+
+
+        [Route("lister-recruited")]
+        //[Authorize(Roles = "Funcionario")]
+        [HttpGet]
+        //Aqui nós passamos como parametro os Command e Handler
+        public GenericQueryResult GetRecruited([FromServices] ListarRecrutadoQueryHandler handle)
+        {
+            ListarRecrutadosQuery query = new ListarRecrutadosQuery();
+
+            return (GenericQueryResult)handle.Handle(query);
+        }
+
+        [Route("search-recruited{nome}")]
+        //[Authorize(Roles = "Funcionario")]
+        [HttpGet]
+        //Aqui nós passamos como parametro os Command e Handler
+        public GenericQueryResult GetSearchRecruited([FromServices] BuscarNomeRecrutadoQueryHandler handle)
+        {
+            BuscarPorNomeQuery query = new BuscarPorNomeQuery();
+
+            return (GenericQueryResult)handle.Handle(query);
+        }
+
     }
 }

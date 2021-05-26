@@ -50,5 +50,8 @@ namespace ContratoSeguro.Dominio.Entidades
             if (Valid)
                 Senha = senha;
         }
+
+    
     }
+
 }

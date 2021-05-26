@@ -1,7 +1,10 @@
 ﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Entidades;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
+using ContratoSeguro.Dominio.Handlers.Queries;
+using ContratoSeguro.Dominio.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +36,22 @@ namespace ContratoSeguro.Api.Controller
             return (GenericCommandResult)handler.Handle(command);
         }
 
-        
+        /// <summary>
+        /// Esse método lista os usuários do tipo funcionario
+        /// </summary>
+        /// <param name="handle">Handler</param>
+        /// <returns>Funcionarios cadastrados</returns>
+        [Route("lister-employee")]
+        //[Authorize(Roles = "Funcionario")]
+        [HttpGet]
+        //Aqui nós passamos como parametro os Command e Handler
+        public GenericQueryResult GetEmployee([FromServices] ListarFuncionarioQueryHandler handle)
+        {
+            ListarFuncionarioQuery query = new ListarFuncionarioQuery();
+
+            return (GenericQueryResult)handle.Handle(query);
+        }
+
+
     }
 }

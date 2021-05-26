@@ -1,5 +1,7 @@
 
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
+using ContratoSeguro.Dominio.Handlers.Queries;
+using ContratoSeguro.Dominio.Handlers.Queries.Usuario;
 using ContratoSeguro.Dominio.Repositories;
 using ContratoSeguro.Infra.Data.Context;
 using ContratoSeguro.Infra.Data.Repositories;
@@ -44,7 +46,9 @@ namespace ContratoSeguro_Api
             });
             
             //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= DESKTOP-HQAU92S\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
-            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
+            //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
+            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source=DESKTOP-1CB35NO;Initial Catalog= ContratoSeguro ;Persist Security Info=True;User ID=sa;Password=sa132"));
+
 
             //JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -68,6 +72,8 @@ namespace ContratoSeguro_Api
             services.AddTransient<CriarContaRecrutadoCommandHandler, CriarContaRecrutadoCommandHandler>();
             services.AddTransient<EsqueciMinhaSenhaCommandHandler, EsqueciMinhaSenhaCommandHandler>();
             services.AddTransient<LogarFuncionarioRecrutadoCommandHandler, LogarFuncionarioRecrutadoCommandHandler>();
+            services.AddTransient<ListarRecrutadoQueryHandler, ListarRecrutadoQueryHandler>();
+            services.AddTransient<BuscarNomeRecrutadoQueryHandler, BuscarNomeRecrutadoQueryHandler>();
 
 
             #endregion
@@ -75,6 +81,7 @@ namespace ContratoSeguro_Api
             #region Injeção Dependência Usuario Funcionario
             services.AddTransient<IUsuarioFuncionarioRepository, UsuarioFuncionarioRepository>();
             services.AddTransient<CriarContaFuncionarioCommandHandler, CriarContaFuncionarioCommandHandler>();
+            services.AddTransient<ListarFuncionarioQueryHandler, ListarFuncionarioQueryHandler>();
 
 
             #endregion
@@ -86,6 +93,7 @@ namespace ContratoSeguro_Api
 
 
             #endregion
+
             #region Injeção Dependência Utils
             services.AddTransient<IMailService, SendGridMailService>();
             #endregion

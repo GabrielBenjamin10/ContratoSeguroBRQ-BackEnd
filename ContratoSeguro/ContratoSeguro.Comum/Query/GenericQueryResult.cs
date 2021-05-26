@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Classificados.Comum.Query
+namespace ContratoSeguro.Comum.Queries
 {
-    public class GenericQueryResult : IQueryResult
+  public class GenericQueryResult : IQueryResult
     {
         public GenericQueryResult(bool sucesso, string mensagem, object data)
         {
