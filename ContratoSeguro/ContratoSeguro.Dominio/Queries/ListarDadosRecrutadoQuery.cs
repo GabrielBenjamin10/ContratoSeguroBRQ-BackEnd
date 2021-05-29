@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Queries
 {
-    public class BuscarPorNomeQuery : IQuery
+    public class ListarDadosRecrutadoQuery : IQuery
     {
+        public Guid IdRecrutado { get; set; }
         public void Validar()
         {
 
         }
-
-        public class BuscarPorNomeRecrutadoQueryResult
+        /// <summary>
+        /// informações solicitadas na tela de Perfil Recrutado
+        /// </summary>
+        public class ListarDadosRecrutadoQueryResult
         {
-
-            public Guid Id { get; set; }
             public string Nome { get; set; }
+            public string Email { get; set; }
             public string Telefone { get; set; }
-
+            public string CPF { get; set; }
 
         }
-
     }
 }

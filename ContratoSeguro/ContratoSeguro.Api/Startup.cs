@@ -46,8 +46,8 @@ namespace ContratoSeguro_Api
             });
             
             //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= DESKTOP-HQAU92S\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
-            //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
-            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source=DESKTOP-1CB35NO;Initial Catalog= ContratoSeguro ;Persist Security Info=True;User ID=sa;Password=sa132"));
+            services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
+            //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source=DESKTOP-1CB35NO;Initial Catalog= ContratoSeguro ;Persist Security Info=True;User ID=sa;Password=sa132"));
 
 
             //JWT
@@ -68,30 +68,40 @@ namespace ContratoSeguro_Api
 
 
             #region Injeção Dependência Usuario Recrutado
-            services.AddTransient<IUsuarioRecrutadoRepository, UsuarioRecrutadoRepository>();
+            services.AddTransient<IRecrutadoRepository, RecrutadoRepository>();
             services.AddTransient<CriarContaRecrutadoCommandHandler, CriarContaRecrutadoCommandHandler>();
             services.AddTransient<EsqueciMinhaSenhaCommandHandler, EsqueciMinhaSenhaCommandHandler>();
             services.AddTransient<LogarFuncionarioRecrutadoCommandHandler, LogarFuncionarioRecrutadoCommandHandler>();
             services.AddTransient<ListarRecrutadoQueryHandler, ListarRecrutadoQueryHandler>();
-            services.AddTransient<BuscarNomeRecrutadoQueryHandler, BuscarNomeRecrutadoQueryHandler>();
+            services.AddTransient<BuscarRecrutadoPorNomeQueryHandler, BuscarRecrutadoPorNomeQueryHandler>();
+            services.AddTransient<ListarDadosRecrutadoQueryHandler, ListarDadosRecrutadoQueryHandler>();
+
 
 
             #endregion
 
             #region Injeção Dependência Usuario Funcionario
-            services.AddTransient<IUsuarioFuncionarioRepository, UsuarioFuncionarioRepository>();
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
             services.AddTransient<CriarContaFuncionarioCommandHandler, CriarContaFuncionarioCommandHandler>();
             services.AddTransient<ListarFuncionarioQueryHandler, ListarFuncionarioQueryHandler>();
+            services.AddTransient<ListarDadosFuncionarioQueryHandler, ListarDadosFuncionarioQueryHandler>();
 
 
             #endregion
 
             #region Injeção Dependência Usuario Empresa
-            services.AddTransient<IUsuarioEmpresaRepository, UsuarioEmpresaRepository>();
+            services.AddTransient<IEmpresaRepository, EmpresaRepository>();
             services.AddTransient<CriarContaEmpresaCommandHandler, CriarContaEmpresaCommandHandler>();
             services.AddTransient<LogarEmpresaCommandHandler, LogarEmpresaCommandHandler>();
+            services.AddTransient<ListarDadosEmpresaQueryHandler, ListarDadosEmpresaQueryHandler>();
 
 
+
+            #endregion
+
+            #region Injeção Dependência Usuario
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<AlterarSenhaCommandHandler, AlterarSenhaCommandHandler>();
             #endregion
 
             #region Injeção Dependência Utils

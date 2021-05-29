@@ -13,11 +13,13 @@ namespace ContratoSeguro.Comum.Entidades
         public Entidade()
         {
             Id = Guid.NewGuid();
+            IdUsuario = Guid.NewGuid();
             DataCriacao = DateTime.Now;
             DataAlteracao = DateTime.Now;
         }
 
         public Guid Id { get; set; }
+        public Guid IdUsuario { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime DataAlteracao { get; set; }
        

@@ -1,6 +1,8 @@
 ﻿
+using ContratoSeguro.Comum.Entidades;
 using ContratoSeguro.Comum.Enum;
 using ContratoSeguro.Comum.Queries;
+using ContratoSeguro.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,10 @@ namespace ContratoSeguro.Dominio.Queries
 
         }
 
-        public class ListarRecrutadosQueryResult
+        public class ListarRecrutadosQueryResult 
         {
             public Guid Id { get; set; }
+            public Guid IdUsuario { get; set; }
             public string Nome { get; set; }
             public string Email { get; set; }
             public string Senha { get; set; }

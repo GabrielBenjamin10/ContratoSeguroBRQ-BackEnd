@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Repositories
 {
-    public interface IUsuarioFuncionarioRepository
+    public interface IFuncionarioRepository
     {
         void Adicionar(Funcionario usuario);
-        void AlterarSenha(Funcionario usuario);
-        void Alterar(Funcionario usuario);
-        Funcionario BuscarPorEmail(string email);
         Funcionario BuscarPorCPF(string cPF);
-        Funcionario BuscarPorId(Guid id);
         Funcionario BuscarPorNome(string nome);
+        Funcionario BuscarPorId(Guid id);
 
         ICollection<Funcionario> Listar();
     }

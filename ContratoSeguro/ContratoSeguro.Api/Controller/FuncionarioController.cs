@@ -21,11 +21,16 @@ namespace ContratoSeguro.Api.Controller
 {
     [Route("api/account/employee")]
     [ApiController]
-    public class UsuarioFuncionarioController : ControllerBase
+    public class FuncionarioController : ControllerBase
     {
-
+        /// <summary>
+        /// Esse método cadastra um funcionario
+        /// </summary>
+        /// <param name="command">Command de cadastrar funcionario</param>
+        /// <param name="handler">Handler de cadastrar funcionario</param>
+        /// <returns>Retorna o cadastro do funcionario</returns>
         [Route("signup")]
-        [Authorize(Roles = "Empresa")]
+        //[Authorize(Roles = "Empresa")]
         [HttpPost]
         //Aqui nós passamos como parametro os Command e Handler
         public GenericCommandResult SignupEmployeeUser(CriarContaFuncionarioCommand command,
@@ -50,6 +55,21 @@ namespace ContratoSeguro.Api.Controller
             ListarFuncionarioQuery query = new ListarFuncionarioQuery();
 
             return (GenericQueryResult)handle.Handle(query);
+        }
+
+        [Route("profile-employee/{id}")]
+        [HttpGet]
+        public GenericQueryResult GetProfile(Guid id,
+           [FromServices] ListarDadosFuncionarioQueryHandler handler
+           )
+        {
+            ListarDadosFuncionarioQuery query = new ListarDadosFuncionarioQuery();
+
+            if (id == Guid.Empty)
+                return new GenericQueryResult(false, "Informe um id válido", null);
+            query.IdFuncionario = id;
+
+            return (GenericQueryResult)handler.Handle(query);
         }
 
 

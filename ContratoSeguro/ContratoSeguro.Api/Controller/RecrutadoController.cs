@@ -21,27 +21,20 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Api.Controller
 {
-    [Route("v1/account/employee")]
+    [Route("v1/account/recruited")]
     [ApiController]
-    public class UsuarioRecrutadoController : ControllerBase
+    public class RecrutadoController : ControllerBase
     {
 
-        [Route("reset-password")]
-        [HttpPut]
-        public GenericCommandResult ResetPasswordAllUsers(
-            [FromBody] EsqueciMinhaSenhaCommand command,
-            [FromServices] EsqueciMinhaSenhaCommandHandler handler
-        )
-        {
-            var resultado = (GenericCommandResult)handler.Handle(command);
-
-            return resultado;
-        }
-
-        [Route("signup")]
+        /// <summary>
+        /// Esse método cadastra um recrutado
+        /// </summary>
+        /// <param name="command">Command de Cadastrar recrutado</param>
+        /// <param name="handler">Hanldler de Cadastrar recrutado</param>
+        /// <returns>Retorna o recrutado cadastrado</returns>
+        [Route("signup-recruited")]
         //[Authorize(Roles = "Funcionario")]
         [HttpPost]
-        //Aqui nós passamos como parametro os Command e Handler
         public GenericCommandResult SignupRecruitedUser(CriarContaRecrutadoCommand command,
         ////Definimos que o CriarContaHanlde é um serviço
         [FromServices] CriarContaRecrutadoCommandHandler handler)
@@ -50,7 +43,11 @@ namespace ContratoSeguro.Api.Controller
             return (GenericCommandResult)handler.Handle(command);
         }
 
-
+        /// <summary>
+        /// Esse método lista todos os recrutados
+        /// </summary>
+        /// <param name="handle">Handler</param>
+        /// <returns>Lista de recrutados</returns>
         [Route("lister-recruited")]
         //[Authorize(Roles = "Funcionario")]
         [HttpGet]
@@ -62,15 +59,35 @@ namespace ContratoSeguro.Api.Controller
             return (GenericQueryResult)handle.Handle(query);
         }
 
-        [Route("search-recruited{nome}")]
+        /// <summary>
+        /// Essse método busca por um nome de recrutado
+        /// </summary>
+        /// <param name="handle">Handler</param>
+        /// <returns>Retorna a lista de nomes encontrados</returns>
+        [Route("search-recruited/{nome}")]
         //[Authorize(Roles = "Funcionario")]
         [HttpGet]
         //Aqui nós passamos como parametro os Command e Handler
-        public GenericQueryResult GetSearchRecruited([FromServices] BuscarNomeRecrutadoQueryHandler handle)
+        public GenericQueryResult GetSearchRecruited([FromServices] BuscarRecrutadoPorNomeQueryHandler handle)
         {
-            BuscarPorNomeQuery query = new BuscarPorNomeQuery();
+            BuscarPorNomeRecrutadoQuery query = new BuscarPorNomeRecrutadoQuery();
 
             return (GenericQueryResult)handle.Handle(query);
+        }
+
+        [Route("profile-recruited/{id}")]
+        [HttpGet]
+        public GenericQueryResult GetProfile(Guid id,
+           [FromServices] ListarDadosRecrutadoQueryHandler handler
+           )
+        {
+            ListarDadosRecrutadoQuery query = new ListarDadosRecrutadoQuery();
+
+            if (id == Guid.Empty)
+                return new GenericQueryResult(false, "Informe um id válido", null);
+            query.IdRecrutado = id;
+
+            return (GenericQueryResult)handler.Handle(query);
         }
 
     }

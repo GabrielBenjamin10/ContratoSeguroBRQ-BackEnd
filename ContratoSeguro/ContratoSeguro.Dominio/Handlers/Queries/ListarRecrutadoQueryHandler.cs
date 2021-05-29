@@ -1,4 +1,5 @@
-﻿using ContratoSeguro.Comum.Handlers;
+﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Handlers;
 using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Dominio.Queries;
 using ContratoSeguro.Dominio.Repositories;
@@ -9,8 +10,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
 {
     public class ListarRecrutadoQueryHandler : IHandlerQuery<ListarRecrutadosQuery>
     {
-        private readonly IUsuarioRecrutadoRepository _recrutadoRepository;
-        public ListarRecrutadoQueryHandler(IUsuarioRecrutadoRepository recrutadoRepository)
+        private readonly IRecrutadoRepository _recrutadoRepository;
+        public ListarRecrutadoQueryHandler(IRecrutadoRepository recrutadoRepository)
         {
             _recrutadoRepository = recrutadoRepository;
         }
@@ -24,7 +25,9 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                 {
                     return new ListarRecrutadosQueryResult()
                     {
+                        
                         Id = x.Id,
+                        IdUsuario = x.IdUsuario,
                         Nome = x.Nome,
                         Email = x.Email,
                         Telefone = x.Telefone

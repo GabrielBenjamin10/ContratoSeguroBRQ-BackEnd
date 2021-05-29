@@ -15,12 +15,14 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
      public class CriarContaFuncionarioCommandHandler : Notifiable, IHandlerCommand<CriarContaFuncionarioCommand>
     {
-        private readonly IUsuarioFuncionarioRepository _usuarioFuncionarioRepositorio;
+        private readonly IFuncionarioRepository _funcionarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailService _emailService;
-        public CriarContaFuncionarioCommandHandler(IUsuarioFuncionarioRepository usuarioFuncionarioRepositorio, IMailService emailService)
+        public CriarContaFuncionarioCommandHandler(IFuncionarioRepository funcionarioRepository, IMailService emailService, IUsuarioRepository usuarioRepository)
         {
-            _usuarioFuncionarioRepositorio = usuarioFuncionarioRepositorio;
+            _funcionarioRepository = funcionarioRepository;
             _emailService = emailService;
+            _usuarioRepository = usuarioRepository;
         }
 
         public ICommandResult Handle(CriarContaFuncionarioCommand command)
@@ -32,12 +34,12 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados do usuário Inválidos", command.Notifications);
 
             //Verifica se cpf existe
-            var cpfExiste = _usuarioFuncionarioRepositorio.BuscarPorCPF(command.CPF);
+            var cpfExiste = _funcionarioRepository.BuscarPorCPF(command.CPF);
             if (cpfExiste != null)
                 return new GenericCommandResult(false, "CPF já cadastrado", null);
 
             //Verifica se email existe
-            var usuarioExiste = _usuarioFuncionarioRepositorio.BuscarPorEmail(command.Email);
+            var usuarioExiste = _usuarioRepository.BuscarPorEmail(command.Email);
 
             if (usuarioExiste != null)
                 return new GenericCommandResult(false, "Email já cadastrado", null);
@@ -59,7 +61,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             if (usuario.Invalid)
                 return new GenericCommandResult(false, "Usuário Inválido", usuario.Notifications);
 
-            _usuarioFuncionarioRepositorio.Adicionar(usuario);
+            _funcionarioRepository.Adicionar(usuario);
 
             //Enviar Email de Boas Vindas
             //Send Grid

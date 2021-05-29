@@ -1,7 +1,10 @@
 ﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Entidades;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
+using ContratoSeguro.Dominio.Handlers.Queries;
+using ContratoSeguro.Dominio.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -17,8 +20,31 @@ namespace ContratoSeguro.Api.Controller
 {
     [Route("api/account/company")]
     [ApiController]
-    public class LogarEmpresa : ControllerBase
+    public class EmpresaController : ControllerBase
     {
+        /// <summary>
+        /// Esse método cadastra uma empresa
+        /// </summary>
+        /// <param name="command">Command de cadastrar empresa</param>
+        /// <param name="handler">Handler de cadastrar empresa</param>
+        /// <returns>Cadastro da empresa</returns>
+        [Route("signup")]
+        [HttpPost]
+        public GenericCommandResult SignupCompanyUser(CriarContaEmpresaCommand command,
+        ////Definimos que o CriarContaHanlde é um serviço
+        [FromServices] CriarContaEmpresaCommandHandler handler)
+        {
+
+            return (GenericCommandResult)handler.Handle(command);
+        }
+
+
+        /// <summary>
+        /// Esse método loga a empresa no no sistema
+        /// </summary>
+        /// <param name="command">Command de logar empresa</param>
+        /// <param name="handler">Command de logar empresa</param>
+        /// <returns>Retorna o token</returns>
         [Route("signin")]
         [HttpPost]
         public GenericCommandResult SignIn(LogarCommandEmpresa command, [FromServices] LogarEmpresaCommandHandler handler)
@@ -36,6 +62,11 @@ namespace ContratoSeguro.Api.Controller
 
         }
 
+        /// <summary>
+        /// Gera o JWT
+        /// </summary>
+        /// <param name="userInfo">Objeto</param>
+        /// <returns>Retorna o token</returns>
         private string GerarJSONWebToken(Empresa userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));
@@ -63,6 +94,27 @@ namespace ContratoSeguro.Api.Controller
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+
+        /// <summary>
+        /// Lista os dados da empresa
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="handler"></param>
+        /// <returns>Retorna os dados do perfil</returns>
+        [Route("profile-company/{id}")]
+        [HttpGet]
+        public GenericQueryResult GetProfile(Guid id,
+            [FromServices] ListarDadosEmpresaQueryHandler handler
+            )
+        {
+            ListarDadosEmpresaQuery query = new ListarDadosEmpresaQuery();
+
+            if (id == Guid.Empty)
+                return new GenericQueryResult(false, "Informe um id válido", null);
+            query.IdEmpresa = id;
+
+            return (GenericQueryResult)handler.Handle(query);
         }
     }
 }

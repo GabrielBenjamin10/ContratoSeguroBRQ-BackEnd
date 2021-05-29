@@ -1,4 +1,5 @@
-﻿using ContratoSeguro.Comum.Queries;
+﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;

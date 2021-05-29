@@ -9,10 +9,12 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
     public class LogarFuncionarioRecrutadoCommandHandler : IHandlerCommand<LogarCommandRecrutado>
     {
-        private readonly IUsuarioRecrutadoRepository _recrutadoRepository;
-        public LogarFuncionarioRecrutadoCommandHandler(IUsuarioRecrutadoRepository repositorio)
+        private readonly IRecrutadoRepository _recrutadoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
+        public LogarFuncionarioRecrutadoCommandHandler(IRecrutadoRepository recrutadoRepository, IUsuarioRepository usuarioRepository)
         {
-            _recrutadoRepository = repositorio;
+            _recrutadoRepository = recrutadoRepository;
+            _usuarioRepository = usuarioRepository;
         }
         public ICommandResult Handle(LogarCommandRecrutado command)
         {
@@ -23,7 +25,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados inválidos", command.Notifications);
 
             //Buscar usuario pelo email
-            var recrutado = _recrutadoRepository.BuscarPorEmail(command.Email);
+            var recrutado = _usuarioRepository.BuscarPorEmail(command.Email);
 
             //Usuario existe
             if (recrutado == null)

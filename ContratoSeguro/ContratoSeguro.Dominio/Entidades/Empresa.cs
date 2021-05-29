@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class Empresa : Entidade
+    public class Empresa : Usuario
     {
 
         //Atributos Empresa
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
         public string Telefone { get; set; }
         public string CNPJ { get; set; }
         public string RazaoSocial { get; set; }
@@ -26,7 +23,7 @@ namespace ContratoSeguro.Dominio.Entidades
         public string Numero { get; set; }
         public string Bairro { get; set; }
         public DateTime DataAbertura { get; set; }
-        public EnTipoUsuario Tipo { get; set; }
+
 
         public Empresa(string nome, string email, string senha, string cNPJ, string razaoSocial, string matriz, string logradouro, string uF, string cidade, string numero, string bairro, DateTime dataAbertura, EnTipoUsuario tipo)
         {

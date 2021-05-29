@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class Recrutado : Entidade
+    public class Recrutado : Usuario
     {
         //Atributos Recrutado
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
+        public List<Recrutado> _recrutado { get; }
         public string Telefone { get; set; }
         public string CPF { get; set; }
-        public EnTipoUsuario Tipo { get; set; }
+        
+
 
         public Recrutado(string nome, string email, string senha, string cPF, EnTipoUsuario tipo)
         {
@@ -38,19 +37,8 @@ namespace ContratoSeguro.Dominio.Entidades
                 CPF = cPF;
                 Tipo = tipo;
             }
+
         } 
-
-        public void AlterarSenha(string senha)
-        {
-            AddNotifications(new Contract()
-                .Requires()
-                .HasMinLen(senha, 8, "Senha", "Senha deve ter no minímo 8 caracteres")
-            );
-
-            if (Valid)
-                Senha = senha;
-        }
-
     
     }
 

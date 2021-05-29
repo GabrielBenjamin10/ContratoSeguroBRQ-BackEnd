@@ -14,12 +14,14 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
     public class CriarContaRecrutadoCommandHandler : Notifiable, IHandlerCommand<CriarContaRecrutadoCommand>
     {
-        private readonly IUsuarioRecrutadoRepository _usuarioRecrutadoRepositorio;
+        private readonly IRecrutadoRepository _recrutadoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly IMailService _emailService;
-        public CriarContaRecrutadoCommandHandler(IUsuarioRecrutadoRepository usuarioRecrutadoRepositorio, IMailService emailService)
+        public CriarContaRecrutadoCommandHandler(IRecrutadoRepository recrutadoRepository, IMailService emailService, IUsuarioRepository usuarioRepository)
         {
-            _usuarioRecrutadoRepositorio = usuarioRecrutadoRepositorio;
+            _recrutadoRepository = recrutadoRepository;
             _emailService = emailService;
+            _usuarioRepository = usuarioRepository;
         }
 
         public ICommandResult Handle(CriarContaRecrutadoCommand command)
@@ -31,15 +33,15 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados do usuário Inválidos", command.Notifications);
 
             //Verifica se email existe
-            var cpfExiste = _usuarioRecrutadoRepositorio.BuscarPorCPF(command.CPF);
+            var cpfExiste = _recrutadoRepository.BuscarPorCPF(command.CPF);
             if (cpfExiste != null)
                 return new GenericCommandResult(false, "CPF já cadastrado", null);
 
             //Verifica se email existe
-            //var usuarioExiste = _usuarioRecrutadoRepositorio.BuscarPorEmail(command.Email);
+            var usuarioExiste = _usuarioRepository.BuscarPorEmail(command.Email);
 
-            //if (usuarioExiste != null)
-            //    return new GenericCommandResult(false, "Email já cadastrado", null);
+            if (usuarioExiste != null)
+                return new GenericCommandResult(false, "Email já cadastrado", null);
 
             string senha = command.Senha;
             string nome = command.Nome;
@@ -54,7 +56,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             if (usuario.Invalid)
                 return new GenericCommandResult(false, "Usuário Inválido", usuario.Notifications);
 
-            _usuarioRecrutadoRepositorio.Adicionar(usuario);
+            _recrutadoRepository.Adicionar(usuario);
             //Enviar Email de Boas Vindas
             //Send Grid
             _emailService.SendEmailAsyncRecruted(usuario.Email, "Logue no sistema com as seguintes credenciais", $"Nome:{nome}\nEmail: {email}\nSenha: {senha}\nCPF: {cpf}");

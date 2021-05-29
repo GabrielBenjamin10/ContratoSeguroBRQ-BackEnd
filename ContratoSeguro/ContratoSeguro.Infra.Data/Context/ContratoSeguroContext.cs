@@ -19,6 +19,7 @@ namespace ContratoSeguro.Infra.Data.Context
         public DbSet<Funcionario> Funcionario { get; set; }
         public DbSet<Recrutado> Recrutado { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
+        public DbSet<Documento> Documento { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,61 +28,21 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Ignore<Notification>();
 
             #region Mapeamento Tabela Usuários Recrutado
-            modelBuilder.Entity<Recrutado>().ToTable("UsuariosRecrutado");
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Id);
-
-            //Nome
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Nome).HasMaxLength(40);
-            modelBuilder.Entity<Recrutado>().Property(x => x.Nome).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Nome).IsRequired();
-
-            //Email
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Email).HasMaxLength(40);
-            modelBuilder.Entity<Recrutado>().Property(x => x.Email).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Email).IsRequired();
-
-            //Senha
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Senha).HasMaxLength(60);
-            modelBuilder.Entity<Recrutado>().Property(x => x.Senha).HasColumnType("varchar(60)");
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Senha).IsRequired();
-
-            //Telefone
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.Telefone).HasMaxLength(11);
-            modelBuilder.Entity<Recrutado>().Property(x => x.Telefone).HasColumnType("varchar(11)");
+            modelBuilder.Entity<Recrutado>().ToTable("Recrutado");
+            modelBuilder.Entity<Recrutado>().Property(x => x.Id);
+            modelBuilder.Entity<Recrutado>().Property(x => x.IdUsuario);
 
             //CPF
             modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.CPF).HasMaxLength(100);
             modelBuilder.Entity<Recrutado>().Property(x => x.CPF).HasColumnType("varchar(100)");
 
-            //DataCriacao
-            modelBuilder.Entity<Recrutado>().Property(t => t.DataCriacao).HasColumnType("DateTime");
-            modelBuilder.Entity<Recrutado>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
-
-            //DataAlteracao
-            modelBuilder.Entity<Recrutado>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
-            modelBuilder.Entity<Recrutado>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
-
 
             #endregion
 
             #region Mapeamento Tabela Usuários Funcionario
-            modelBuilder.Entity<Funcionario>().ToTable("UsuariosFuncionario");
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Id);
-
-            //Nome
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Nome).HasMaxLength(40);
-            modelBuilder.Entity<Funcionario>().Property(x => x.Nome).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Nome).IsRequired();
-
-            //Email
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Email).HasMaxLength(40);
-            modelBuilder.Entity<Funcionario>().Property(x => x.Email).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Email).IsRequired();
-
-            //Senha
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Senha).HasMaxLength(60);
-            modelBuilder.Entity<Funcionario>().Property(x => x.Senha).HasColumnType("varchar(60)");
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Senha).IsRequired();
+            modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
+            modelBuilder.Entity<Funcionario>().Property(x => x.Id);
+            modelBuilder.Entity<Funcionario>().Property(x => x.IdUsuario);
 
             //Telefone
             modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Telefone).HasMaxLength(11);
@@ -103,40 +64,12 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.CPF).HasMaxLength(100);
             modelBuilder.Entity<Funcionario>().Property(x => x.CPF).HasColumnType("varchar(100)");
 
-            //DataCriacao
-            modelBuilder.Entity<Funcionario>().Property(t => t.DataCriacao).HasColumnType("DateTime");
-            modelBuilder.Entity<Funcionario>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
-
-            //DataAlteracao
-            modelBuilder.Entity<Funcionario>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
-            modelBuilder.Entity<Funcionario>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
-
-
             #endregion
 
             #region Mapeamento Tabela Usuários Empresa
-            modelBuilder.Entity<Empresa>().ToTable("UsuariosEmpresa");
-            modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Id);
-
-            //Nome
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Nome).HasMaxLength(40);
-            modelBuilder.Entity<Empresa>().Property(x => x.Nome).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Nome).IsRequired();
-
-            //Email
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Email).HasMaxLength(40);
-            modelBuilder.Entity<Empresa>().Property(x => x.Email).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Email).IsRequired();
-
-            //Senha
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Senha).HasMaxLength(60);
-            modelBuilder.Entity<Empresa>().Property(x => x.Senha).HasColumnType("varchar(60)");
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Senha).IsRequired();
-
-            //Telefone
-            modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.Telefone).HasMaxLength(11);
-            modelBuilder.Entity<Empresa>().Property(x => x.Telefone).HasColumnType("varchar(11)");
-
+            modelBuilder.Entity<Empresa>().ToTable("Empresa");
+            modelBuilder.Entity<Funcionario>().Property(x => x.Id);
+            modelBuilder.Entity<Empresa>().Property(x => x.IdUsuario);
             //CNPJ
             modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.CNPJ).HasMaxLength(14);
             modelBuilder.Entity<Empresa>().Property(x => x.CNPJ).HasColumnType("varchar(14)");
@@ -173,15 +106,62 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Entity<Empresa>().Property(t => t.DataAbertura).HasColumnType("DateTime");
             modelBuilder.Entity<Empresa>().Property(t => t.DataAbertura).HasDefaultValueSql("GetDate()");
 
+
+            #endregion
+
+            #region Mapeamento Tabela Documentos
+            modelBuilder.Entity<Documento>().ToTable("Documento");
+            modelBuilder.Entity<Documento>().Property(x => x.Id);
+            ///Nome
+            modelBuilder.Entity<Documento>().Property(x => x.Nome).HasMaxLength(40);
+            modelBuilder.Entity<Documento>().Property(x => x.Nome).HasColumnType("varchar(40)");
+            modelBuilder.Entity<Documento>().Property(x => x.Nome).IsRequired();
             //DataCriacao
-            modelBuilder.Entity<Empresa>().Property(t => t.DataCriacao).HasColumnType("DateTime");
-            modelBuilder.Entity<Empresa>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
+            modelBuilder.Entity<Documento>().Property(t => t.DataCriacao).HasColumnType("DateTime");
+            modelBuilder.Entity<Documento>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
 
             //DataAlteracao
-            modelBuilder.Entity<Empresa>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
-            modelBuilder.Entity<Empresa>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
+            modelBuilder.Entity<Documento>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
+            modelBuilder.Entity<Documento>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
 
+            #endregion
 
+            #region Mapeamento Tabela Usuario
+            modelBuilder.Entity<Usuario>().ToTable("Usuario");
+            modelBuilder.Entity<Usuario>().Property(x => x.Id);
+            //Nome
+            modelBuilder.Entity<Usuario>().Property(x => x.Nome).HasMaxLength(40);
+            modelBuilder.Entity<Usuario>().Property(x => x.Nome).HasColumnType("varchar(40)");
+            modelBuilder.Entity<Usuario>().Property(x => x.Nome).IsRequired();
+
+            //Email
+            modelBuilder.Entity<Usuario>().Property(x => x.Email).HasMaxLength(40);
+            modelBuilder.Entity<Usuario>().Property(x => x.Email).HasColumnType("varchar(40)");
+            modelBuilder.Entity<Usuario>().Property(x => x.Email).IsRequired();
+
+            //Senha
+            modelBuilder.Entity<Usuario>().Property(x => x.Senha).HasMaxLength(60);
+            modelBuilder.Entity<Usuario>().Property(x => x.Senha).HasColumnType("varchar(60)");
+            modelBuilder.Entity<Usuario>().Property(x => x.Senha).IsRequired();
+
+            //Telefone
+            modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasMaxLength(11);
+            modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasColumnType("varchar(11)");
+
+            //DataCriacao
+            modelBuilder.Entity<Usuario>().Property(t => t.DataCriacao).HasColumnType("DateTime");
+            modelBuilder.Entity<Usuario>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
+
+            //DataAlteracao
+            modelBuilder.Entity<Usuario>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
+            modelBuilder.Entity<Usuario>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
+
+            //Relacionamento
+            modelBuilder.Entity<Usuario>()
+
+              .HasMany(c => c.Documentos)
+              .WithOne(u => u.Usuario)
+              .HasForeignKey(fk => fk.IdUsuario);
             #endregion
 
 

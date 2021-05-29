@@ -5,15 +5,13 @@ using System.Text;
 
 namespace ContratoSeguro.Dominio.Repositories
 {
-    public interface IUsuarioRecrutadoRepository
+    public interface IRecrutadoRepository
     {
         void Adicionar(Recrutado usuario);
-        void AlterarSenha(Recrutado usuario);
-        void Alterar(Recrutado usuario);
-        Recrutado BuscarPorEmail(string email);
         Recrutado BuscarPorCPF(string cPF);
-        Recrutado BuscarPorId(Guid id);
         Recrutado BuscarPorNome(string nome);
+        Recrutado BuscarPorId(Guid id);
+        void Alterar(Usuario usuario);
 
         ICollection<Recrutado> Listar();
     }

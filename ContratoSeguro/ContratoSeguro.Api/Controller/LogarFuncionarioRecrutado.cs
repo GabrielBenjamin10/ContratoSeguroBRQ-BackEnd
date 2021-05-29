@@ -19,6 +19,12 @@ namespace ContratoSeguro.Api.Controller
     [ApiController]
     public class LogarFuncionarioRecrutado : ControllerBase
     {
+        /// <summary>
+        /// Esse método loga o funcionario/recrutado no sistema
+        /// </summary>
+        /// <param name="command">Command de logar funcionario/recrutado</param>
+        /// <param name="handler">Command de logar funcionario/recrutad</param>
+        /// <returns>Retorna o token</returns>
         [Route("signin")]
         [HttpPost]
         public GenericCommandResult SignIn(LogarCommandRecrutado command, [FromServices] LogarFuncionarioRecrutadoCommandHandler handler)
@@ -35,7 +41,11 @@ namespace ContratoSeguro.Api.Controller
             return new GenericCommandResult(false, resultado.Mensagem, resultado.Data);
 
         }
-
+        /// <summary>
+        /// Esse método gera o JWT
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns>Token</returns>
         private string GerarJSONWebToken(Recrutado userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Infra.Data.Repositories
 {
-    public class UsuarioFuncionarioRepository : IUsuarioFuncionarioRepository
+    public class FuncionarioRepository : IFuncionarioRepository
     {
         private readonly ContratoSeguroContext _context;
 
-        public UsuarioFuncionarioRepository(ContratoSeguroContext context)
+        public FuncionarioRepository(ContratoSeguroContext context)
         {
             _context = context;
         }
@@ -25,37 +25,18 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void Alterar(Funcionario usuario)
-        {
-            _context.Entry(usuario).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void AlterarSenha(Funcionario usuario)
-        {
-            _context.Entry(usuario).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
         public Funcionario BuscarPorCPF(string cPF)
         {
             return _context.Funcionario.FirstOrDefault(u => u.CPF == cPF);
         }
 
-        public Funcionario BuscarPorEmail(string email)
-        {
-            
-            return _context.Funcionario.FirstOrDefault(u => u.Email == email);
-        }
-
-        public Funcionario BuscarPorId(Guid id)
-        {
-            return _context.Funcionario.FirstOrDefault(p => p.Id == id);
-        }
-
         public Funcionario BuscarPorNome(string nome)
         {
             return _context.Funcionario.FirstOrDefault(p => p.Nome == nome);
+        }
+        public Funcionario BuscarPorId(Guid id)
+        {
+            return _context.Funcionario.FirstOrDefault(p => p.Id == id);
         }
 
         public ICollection<Funcionario> Listar()

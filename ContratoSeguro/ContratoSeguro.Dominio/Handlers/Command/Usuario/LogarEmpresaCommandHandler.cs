@@ -16,10 +16,12 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
     public class LogarEmpresaCommandHandler : IHandlerCommand<LogarCommandEmpresa>
     {
-        private readonly IUsuarioEmpresaRepository _empresaRepository;
-        public LogarEmpresaCommandHandler(IUsuarioEmpresaRepository repositorio)
+        private readonly IEmpresaRepository _empresaRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
+        public LogarEmpresaCommandHandler(IEmpresaRepository empresaRepository, IUsuarioRepository usuarioRepository)
         {
-            _empresaRepository = repositorio;
+            _empresaRepository = empresaRepository;
+            _usuarioRepository = usuarioRepository;
         }
         public ICommandResult Handle(LogarCommandEmpresa command)
         {
@@ -31,11 +33,13 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 
 
             //Buscar usuario pelo email
-            var empresa = _empresaRepository.BuscarPorEmail(command.Email);
+            var empresa = _usuarioRepository.BuscarPorEmail(command.Email);
 
             //Usuario existe
             if (empresa == null)
+            {
                 return new GenericCommandResult(false, "Email inválido", null);
+            }
 
             //Validar Senha
             if (!Senha.ValidarSenha(command.Senha, empresa.Senha))

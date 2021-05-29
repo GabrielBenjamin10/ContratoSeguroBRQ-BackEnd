@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Infra.Data.Repositories
 {
-    public class UsuarioEmpresaRepository : IUsuarioEmpresaRepository
+    public class EmpresaRepository : IEmpresaRepository
     {
         private readonly ContratoSeguroContext _context;
 
-        public UsuarioEmpresaRepository(ContratoSeguroContext context)
+        public EmpresaRepository(ContratoSeguroContext context)
         {
             _context = context;
         }
@@ -25,27 +25,9 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void Alterar(Empresa usuario)
-        {
-            _context.Entry(usuario).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void AlterarSenha(Empresa usuario)
-        {
-            _context.Entry(usuario).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
         public Empresa BuscarPorCNPJ(string cNPJ)
         {
             return _context.Empresa.FirstOrDefault(u => u.CNPJ == cNPJ);
-        }
-
-        public Empresa BuscarPorEmail(string email)
-        {
-            return _context.Empresa.FirstOrDefault(u => u.Email == email);
-
         }
 
         public Empresa BuscarPorId(Guid id)
@@ -65,5 +47,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
                     .OrderBy(u => u.DataCriacao)
                     .ToList();
         }
+
+
     }
 }

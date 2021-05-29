@@ -1,4 +1,5 @@
-﻿using ContratoSeguro.Comum.Handlers;
+﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Handlers;
 using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Dominio.Queries;
 using ContratoSeguro.Dominio.Repositories;
@@ -13,8 +14,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries
 {
     public class ListarFuncionarioQueryHandler : IHandlerQuery<ListarFuncionarioQuery>
     {
-        private readonly IUsuarioFuncionarioRepository _funcionarioRepository;
-        public ListarFuncionarioQueryHandler(IUsuarioFuncionarioRepository funcionarioRepository)
+        private readonly IFuncionarioRepository _funcionarioRepository;
+        public ListarFuncionarioQueryHandler(IFuncionarioRepository funcionarioRepository)
         {
             _funcionarioRepository = funcionarioRepository;
         }
@@ -28,11 +29,13 @@ namespace ContratoSeguro.Dominio.Handlers.Queries
                     return new ListarFuncionariosQueryResult()
                     {
                         Id = x.Id,
+                        IdUsuario = x.IdUsuario,
                         Nome = x.Nome,
+
                     };
                 }
             );
-            return new GenericQueryResult(true, "Lista de Recrutados", Funcionarios);
+            return new GenericQueryResult(true, "Lista de Funcionarios", Funcionarios);
         }
     }
 }

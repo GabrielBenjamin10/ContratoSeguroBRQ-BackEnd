@@ -16,14 +16,18 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
     public class EsqueciMinhaSenhaCommandHandler : Notifiable, IHandlerCommand<EsqueciMinhaSenhaCommand>
     {
         //Chamamos nosso repositório
-        private readonly IUsuarioRecrutadoRepository _repository;
+        private readonly IRecrutadoRepository _recrutadoRepository;
         private readonly IMailService _emailService;
+        private readonly IUsuarioRepository _usuarioRepository;
+
 
         //Realizamos nossa injeção de dependência
-        public EsqueciMinhaSenhaCommandHandler(IUsuarioRecrutadoRepository repository, IMailService emailService)
+        public EsqueciMinhaSenhaCommandHandler(IRecrutadoRepository recrutadoRepository, IMailService emailService, IUsuarioRepository usuarioRepository)
         {
-            _repository = repository;
+            _recrutadoRepository = recrutadoRepository;
             _emailService = emailService;
+            _usuarioRepository = usuarioRepository;
+
         }
 
         public ICommandResult Handle(EsqueciMinhaSenhaCommand command)
@@ -35,7 +39,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados inválidos", command.Notifications);
 
             //Verifica se o email existe
-            var usuario = _repository.BuscarPorEmail(command.Email);
+            var usuario = _usuarioRepository.BuscarPorEmail(command.Email);
 
             if (usuario == null)
                 return new GenericCommandResult(false, "Email inválido", null);
@@ -49,7 +53,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados inválidos", usuario.Notifications);
 
             //Salva o usuario com nova senha no banco
-            _repository.Alterar(usuario);
+            _usuarioRepository.Alterar(usuario);
 
             //TODO: Enviar email de SENHA NOVA
             //Enviar email de boas vindas

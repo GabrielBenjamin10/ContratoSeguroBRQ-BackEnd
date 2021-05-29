@@ -1,5 +1,6 @@
-﻿using ContratoSeguro.Comum.Enum;
-using ContratoSeguro.Comum.Queries;
+﻿using ContratoSeguro.Comum.Queries;
+using Flunt.Notifications;
+using Flunt.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,23 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Queries
 {
-    public class ListarFuncionarioQuery : IQuery
+    public class BuscarPorNomeRecrutadoQuery :  IQuery
     {
+        public string Nome { get; set; }
         public void Validar()
         {
-
+            
         }
-        public class ListarFuncionariosQueryResult
+
+        public class BuscarPorNomeRecrutadoQueryResult
         {
-            public Guid IdUsuario { get; set; }
+
             public Guid Id { get; set; }
             public string Nome { get; set; }
-            public string Email { get; set; }
+            public string Telefone { get; set; }
+
 
         }
+
     }
 }

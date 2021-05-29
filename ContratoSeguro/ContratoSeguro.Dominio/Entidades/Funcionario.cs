@@ -9,18 +9,15 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
-    public class Funcionario : Entidade
+    public class Funcionario : Usuario
     {
         //Atributos Funcionario
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
         public string Telefone { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }
         public string Formação { get; set; }
         public DateTime DataNascimento { get; set; }
-        public EnTipoUsuario Tipo { get; set; }
+
 
 
         // Notificações - FLunt
@@ -51,16 +48,5 @@ namespace ContratoSeguro.Dominio.Entidades
 
         }
 
-
-        public void AlterarSenha(string senha)
-        {
-            AddNotifications(new Contract()
-                .Requires()
-                .HasMinLen(senha, 8, "Senha", "Senha deve ter no minímo 8 caracteres")
-            );
-
-            if (Valid)
-                Senha = senha;
-        }
     }
 }

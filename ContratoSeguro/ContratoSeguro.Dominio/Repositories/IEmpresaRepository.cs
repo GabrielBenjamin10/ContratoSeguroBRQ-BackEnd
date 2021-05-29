@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Dominio.Repositories
 {
-    public interface IUsuarioEmpresaRepository
+    public interface IEmpresaRepository
     {
         void Adicionar(Empresa usuario);
-        void AlterarSenha(Empresa usuario);
-        void Alterar(Empresa usuario);
-        Empresa BuscarPorEmail(string email);
         Empresa BuscarPorCNPJ(string cNPJ);
-        Empresa BuscarPorId(Guid id);
         Empresa BuscarPorNome(string nome);
+        Empresa BuscarPorId(Guid id);
 
         ICollection<Empresa> Listar();
     }
