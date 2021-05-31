@@ -9,10 +9,10 @@ using static ContratoSeguro.Dominio.Queries.BuscarPorNomeRecrutadoQuery;
 
 namespace ContratoSeguro.Dominio.Handlers.Queries
 {
-    public class BuscarRecrutadoPorNomeQueryHandler : IHandlerQuery<BuscarPorNomeRecrutadoQuery>
+    public class BuscarPorNomeRecrutadoQueryHandler : IHandlerQuery<BuscarPorNomeRecrutadoQuery>
     {
         private readonly IRecrutadoRepository _recrutadoRepository;
-        public BuscarRecrutadoPorNomeQueryHandler(IRecrutadoRepository recrutadoRepository)
+        public BuscarPorNomeRecrutadoQueryHandler(IRecrutadoRepository recrutadoRepository)
         {
             _recrutadoRepository = recrutadoRepository;
         }

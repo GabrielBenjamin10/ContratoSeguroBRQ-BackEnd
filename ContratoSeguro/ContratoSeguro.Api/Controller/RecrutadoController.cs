@@ -68,9 +68,13 @@ namespace ContratoSeguro.Api.Controller
         //[Authorize(Roles = "Funcionario")]
         [HttpGet]
         //Aqui nós passamos como parametro os Command e Handler
-        public GenericQueryResult GetSearchRecruited([FromServices] BuscarRecrutadoPorNomeQueryHandler handle)
+        public GenericQueryResult GetSearchRecruited(string nome, [FromServices] BuscarPorNomeRecrutadoQueryHandler handle)
         {
             BuscarPorNomeRecrutadoQuery query = new BuscarPorNomeRecrutadoQuery();
+
+            var tipoUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            query.Nome = nome;
 
             return (GenericQueryResult)handle.Handle(query);
         }

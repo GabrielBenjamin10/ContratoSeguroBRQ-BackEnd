@@ -72,6 +72,26 @@ namespace ContratoSeguro.Api.Controller
             return (GenericQueryResult)handler.Handle(query);
         }
 
+        /// <summary>
+        /// Essse método busca por um nome de recrutado
+        /// </summary>
+        /// <param name="handle">Handler</param>
+        /// <returns>Retorna a lista de nomes encontrados</returns>
+        [Route("search-employee/{nome}")]
+        //[Authorize(Roles = "Funcionario")]
+        [HttpGet]
+        //Aqui nós passamos como parametro os Command e Handler
+        public GenericQueryResult GetSearchEmployee(string nome, [FromServices] BuscarPorNomeFuncionarioQueryHandler handle)
+        {
+            BuscarNomeFuncionarioQuery query = new BuscarNomeFuncionarioQuery();
+
+            var tipoUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            query.Nome = nome;
+
+            return (GenericQueryResult)handle.Handle(query);
+        }
+
 
     }
 }
