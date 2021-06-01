@@ -75,6 +75,10 @@ namespace ContratoSeguro_Api
             services.AddTransient<ListarRecrutadoQueryHandler, ListarRecrutadoQueryHandler>();
             services.AddTransient<BuscarPorNomeRecrutadoQueryHandler, BuscarPorNomeRecrutadoQueryHandler>();
             services.AddTransient<ListarDadosRecrutadoQueryHandler, ListarDadosRecrutadoQueryHandler>();
+            services.AddTransient<DeletarRecrutadoCommandHandler, DeletarRecrutadoCommandHandler>();
+            services.AddTransient<DeletarFuncionarioCommandHandler, DeletarFuncionarioCommandHandler>();
+
+
 
 
 

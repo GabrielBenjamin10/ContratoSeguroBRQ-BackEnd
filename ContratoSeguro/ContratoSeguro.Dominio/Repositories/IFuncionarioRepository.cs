@@ -14,6 +14,7 @@ namespace ContratoSeguro.Dominio.Repositories
         Funcionario BuscarPorNome(string nome);
         Funcionario BuscarPorId(Guid id);
         Funcionario BuscarPorEmail(string email);
+        void Deletar(Guid id);
 
         ICollection<Funcionario> Listar();
     }

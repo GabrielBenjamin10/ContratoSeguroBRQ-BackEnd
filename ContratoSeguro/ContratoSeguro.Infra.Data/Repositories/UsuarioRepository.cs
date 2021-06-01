@@ -30,5 +30,8 @@ namespace ContratoSeguro.Infra.Data.Repositories
         {
             return _context.Usuario.FirstOrDefault(u => u.Email == email);
         }
+
+
+
     }
 }

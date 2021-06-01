@@ -94,5 +94,16 @@ namespace ContratoSeguro.Api.Controller
             return (GenericQueryResult)handler.Handle(query);
         }
 
+        [HttpDelete("delete-recruited")]
+        //[Authorize]
+        public GenericCommandResult DeleteRecruited(
+                    [FromBody] DeletarRecrutadoCommand command,
+                                    [FromServices] DeletarRecrutadoCommandHandler handler
+      )
+        {
+
+            return (GenericCommandResult)handler.Handle(command);
+        }
+
     }
 }

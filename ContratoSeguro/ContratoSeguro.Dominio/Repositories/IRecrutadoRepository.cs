@@ -11,6 +11,7 @@ namespace ContratoSeguro.Dominio.Repositories
         Recrutado BuscarPorCPF(string cPF);
         Recrutado BuscarPorNome(string nome);
         Recrutado BuscarPorId(Guid id);
+        void Deletar(Guid id);
         void Alterar(Recrutado usuario);
         Recrutado BuscarPorEmail(string email);
 

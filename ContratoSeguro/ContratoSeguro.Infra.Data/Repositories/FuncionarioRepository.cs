@@ -51,5 +51,15 @@ namespace ContratoSeguro.Infra.Data.Repositories
                     .OrderBy(u => u.DataCriacao)
                     .ToList();
         }
+        public void Deletar(Guid id)
+        {
+            var funcionario = BuscarPorId(id);
+            _context
+                .Funcionario
+                .Remove(funcionario);
+            _context
+                .SaveChanges();
+
+        }
     }
 }

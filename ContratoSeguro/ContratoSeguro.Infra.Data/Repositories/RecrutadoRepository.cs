@@ -59,5 +59,16 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();
         }
+
+        public void Deletar(Guid id)
+        {
+            var recrutado = BuscarPorId(id);
+            _context
+                .Recrutado
+                .Remove(recrutado);
+            _context
+                .SaveChanges();
+
+        }
     }
 }

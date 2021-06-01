@@ -92,6 +92,22 @@ namespace ContratoSeguro.Api.Controller
             return (GenericQueryResult)handle.Handle(query);
         }
 
+        /// <summary>
+        /// Deleta um funcionario
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="handler"></param>
+        /// <returns></returns>
+        [HttpDelete("delete-employee")]
+        //[Authorize]
+        public GenericCommandResult DeleteEmployee(
+                    [FromBody] DeletarFuncionarioCommand command,
+                                    [FromServices] DeletarFuncionarioCommandHandler handler
+      )
+        {
+
+            return (GenericCommandResult)handler.Handle(command);
+        }
 
     }
 }
