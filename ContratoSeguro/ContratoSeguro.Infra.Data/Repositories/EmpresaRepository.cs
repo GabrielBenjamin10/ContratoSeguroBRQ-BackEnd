@@ -39,6 +39,10 @@ namespace ContratoSeguro.Infra.Data.Repositories
         {
             return _context.Empresa.FirstOrDefault(p => p.Nome == nome);
         }
+        public Empresa BuscarPorEmail(string email)
+        {
+            return _context.Empresa.FirstOrDefault(p => p.Email == email);
+        }
 
         public ICollection<Empresa> Listar()
         {

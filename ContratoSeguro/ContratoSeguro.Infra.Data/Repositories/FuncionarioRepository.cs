@@ -39,6 +39,11 @@ namespace ContratoSeguro.Infra.Data.Repositories
             return _context.Funcionario.FirstOrDefault(p => p.Id == id);
         }
 
+        public Funcionario BuscarPorEmail(string email)
+        {
+            return _context.Funcionario.FirstOrDefault(p => p.Email == email);
+        }
+
         public ICollection<Funcionario> Listar()
         {
             return _context.Funcionario

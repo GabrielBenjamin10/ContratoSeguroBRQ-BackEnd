@@ -28,12 +28,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
 
         public Usuario BuscarPorEmail(string email)
         {
-            return _context.Recrutado.FirstOrDefault(u => u.Email == email);
-        }
-
-        public Usuario BuscarPorId(Guid id)
-        {
-            return _context.Recrutado.FirstOrDefault(p => p.Id == id);
+            return _context.Usuario.FirstOrDefault(u => u.Email == email);
         }
     }
 }

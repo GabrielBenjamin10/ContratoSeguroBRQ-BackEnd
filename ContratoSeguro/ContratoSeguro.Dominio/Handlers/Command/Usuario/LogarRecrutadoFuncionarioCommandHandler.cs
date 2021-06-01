@@ -7,16 +7,16 @@ using ContratoSeguro.Dominio.Repositories;
 
 namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 {
-    public class LogarFuncionarioRecrutadoCommandHandler : IHandlerCommand<LogarCommandRecrutado>
+    public class LogarRecrutadoFuncionarioCommandHandler : IHandlerCommand<LogarCommandRecrutadoFuncionario>
     {
         private readonly IRecrutadoRepository _recrutadoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
-        public LogarFuncionarioRecrutadoCommandHandler(IRecrutadoRepository recrutadoRepository, IUsuarioRepository usuarioRepository)
+        public LogarRecrutadoFuncionarioCommandHandler(IRecrutadoRepository recrutadoRepository, IUsuarioRepository usuarioRepository)
         {
             _recrutadoRepository = recrutadoRepository;
             _usuarioRepository = usuarioRepository;
         }
-        public ICommandResult Handle(LogarCommandRecrutado command)
+        public ICommandResult Handle(LogarCommandRecrutadoFuncionario command)
         {
             //Command é valido
             command.Validar();
@@ -25,18 +25,18 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "Dados inválidos", command.Notifications);
 
             //Buscar usuario pelo email
-            var recrutado = _usuarioRepository.BuscarPorEmail(command.Email);
+            var usuario = _usuarioRepository.BuscarPorEmail(command.Email);
 
             //Usuario existe
-            if (recrutado == null)
+            if (usuario == null)
                 return new GenericCommandResult(false, "Email inválido", null);
 
             //Validar Senha
-            if (!Senha.ValidarSenha(command.Senha, recrutado.Senha))
+            if (!Senha.ValidarSenha(command.Senha, usuario.Senha))
                 return new GenericCommandResult(false, "Senha inválida", null);
 
             //retorna true com os dados do usuário
-            return new GenericCommandResult(true, "Usuário Logado", recrutado);
+            return new GenericCommandResult(true, "Usuário Logado", usuario);
         }
     }
 }

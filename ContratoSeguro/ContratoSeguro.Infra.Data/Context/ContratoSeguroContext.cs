@@ -21,6 +21,8 @@ namespace ContratoSeguro.Infra.Data.Context
         public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Documento> Documento { get; set; }
 
+        public DbSet<Usuario> Usuario { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

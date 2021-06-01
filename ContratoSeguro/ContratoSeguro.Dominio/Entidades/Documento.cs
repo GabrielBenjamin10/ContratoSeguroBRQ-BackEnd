@@ -10,7 +10,6 @@ namespace ContratoSeguro.Dominio.Entidades
     public class Documento : Entidade
     {
         public string Nome { get; set; }
-        public Guid IdUsuario { get; set; }
         public virtual Usuario Usuario { get; private set; }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContratoSeguro.Infra.Data.Migrations
 {
     [DbContext(typeof(ContratoSeguroContext))]
-    [Migration("20210529222629_User")]
+    [Migration("20210601183142_User")]
     partial class User
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

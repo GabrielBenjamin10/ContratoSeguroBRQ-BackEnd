@@ -4,9 +4,9 @@ using Flunt.Validations;
 
 namespace ContratoSeguro.Dominio.Commands.Usuarios
 {
-    public class LogarCommandRecrutado : Notifiable, ICommand
+    public class LogarCommandRecrutadoFuncionario : Notifiable, ICommand
     {
-        public LogarCommandRecrutado(string cpf, string email, string senha)
+        public LogarCommandRecrutadoFuncionario(string cpf, string email, string senha)
         {
             Email = email;
             Senha = senha;

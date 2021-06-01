@@ -25,10 +25,13 @@ namespace ContratoSeguro.Api.Controller
         [Route("update-password")]
         //[Authorize]
         [HttpPut]
-        public ICommandResult AlterarSenha(AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
+        public ICommandResult AlterarSenha( AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
         {
-            command.IdUsuario = Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+            var idUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
+            command.IdUsuario = new Guid(idUsuario.Value);
+
             return (GenericCommandResult)handler.Handle(command);
+
         }
 
 

@@ -13,6 +13,7 @@ namespace ContratoSeguro.Dominio.Repositories
         Funcionario BuscarPorCPF(string cPF);
         Funcionario BuscarPorNome(string nome);
         Funcionario BuscarPorId(Guid id);
+        Funcionario BuscarPorEmail(string email);
 
         ICollection<Funcionario> Listar();
     }

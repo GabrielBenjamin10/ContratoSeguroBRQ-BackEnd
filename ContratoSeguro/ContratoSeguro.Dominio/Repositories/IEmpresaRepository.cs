@@ -13,6 +13,7 @@ namespace ContratoSeguro.Dominio.Repositories
         Empresa BuscarPorCNPJ(string cNPJ);
         Empresa BuscarPorNome(string nome);
         Empresa BuscarPorId(Guid id);
+        Empresa BuscarPorEmail(string email);
 
         ICollection<Empresa> Listar();
     }

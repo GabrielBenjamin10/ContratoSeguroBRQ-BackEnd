@@ -12,7 +12,6 @@ namespace ContratoSeguro.Dominio.Entidades
     public class Funcionario : Usuario
     {
         //Atributos Funcionario
-        public string Telefone { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }
         public string Formação { get; set; }

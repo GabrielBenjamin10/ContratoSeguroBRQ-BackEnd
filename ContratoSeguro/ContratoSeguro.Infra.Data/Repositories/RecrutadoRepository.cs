@@ -40,6 +40,11 @@ namespace ContratoSeguro.Infra.Data.Repositories
             return _context.Recrutado.FirstOrDefault(p => p.Id == id);
         }
 
+        public Recrutado BuscarPorEmail(string email)
+        {
+            return _context.Recrutado.FirstOrDefault(p => p.Email == email);
+        }
+
 
         public ICollection<Recrutado> Listar() //ICollection => Lista em forma de array para , posteriormente, modifica-los
         {
@@ -49,7 +54,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
                      .ToList();
         }
 
-        public void Alterar(Usuario usuario)
+        public void Alterar(Recrutado usuario)
         {
             _context.Entry(usuario).State = EntityState.Modified;
             _context.SaveChanges();

@@ -38,7 +38,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
                 return new GenericCommandResult(false, "CPF já cadastrado", null);
 
             //Verifica se email existe
-            var usuarioExiste = _usuarioRepository.BuscarPorEmail(command.Email);
+            var usuarioExiste = _recrutadoRepository.BuscarPorEmail(command.Email);
 
             if (usuarioExiste != null)
                 return new GenericCommandResult(false, "Email já cadastrado", null);

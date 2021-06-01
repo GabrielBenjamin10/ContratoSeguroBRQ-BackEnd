@@ -13,7 +13,6 @@ namespace ContratoSeguro.Dominio.Entidades
     {
         //Atributos Recrutado
         public List<Recrutado> _recrutado { get; }
-        public string Telefone { get; set; }
         public string CPF { get; set; }
         
 

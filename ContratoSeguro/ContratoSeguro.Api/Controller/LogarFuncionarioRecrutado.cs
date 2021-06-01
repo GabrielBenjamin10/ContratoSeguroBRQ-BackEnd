@@ -27,13 +27,13 @@ namespace ContratoSeguro.Api.Controller
         /// <returns>Retorna o token</returns>
         [Route("signin")]
         [HttpPost]
-        public GenericCommandResult SignIn(LogarCommandRecrutado command, [FromServices] LogarFuncionarioRecrutadoCommandHandler handler)
+        public GenericCommandResult SignIn(LogarCommandRecrutadoFuncionario command, [FromServices] LogarRecrutadoFuncionarioCommandHandler handler)
         {
             var resultado = (GenericCommandResult)handler.Handle(command);
             
             if (resultado.Sucesso)
             {
-                var token = GerarJSONWebToken((Recrutado)resultado.Data);
+                var token = GerarJSONWebToken((Usuario)resultado.Data);
 
                 return new GenericCommandResult(resultado.Sucesso, resultado.Mensagem, new { token = token });
             }
@@ -46,7 +46,7 @@ namespace ContratoSeguro.Api.Controller
         /// </summary>
         /// <param name="userInfo"></param>
         /// <returns>Token</returns>
-        private string GerarJSONWebToken(Recrutado userInfo)
+        private string GerarJSONWebToken(Usuario userInfo)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
