@@ -24,6 +24,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
+
         public Recrutado BuscarPorCPF(string cPF)
         {
             return _context.Recrutado.FirstOrDefault(u => u.CPF == cPF);

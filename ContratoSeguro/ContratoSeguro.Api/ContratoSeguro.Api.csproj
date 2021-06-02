@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ContratoSeguro.Infra.Data\ContratoSeguro.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\upload\" />
+  </ItemGroup>
+
 </Project>

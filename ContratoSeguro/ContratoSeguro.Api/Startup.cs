@@ -1,4 +1,5 @@
 
+using ContratoSeguro.Dominio.Handlers.Command.Documento;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Handlers.Queries;
 using ContratoSeguro.Dominio.Handlers.Queries.Usuario;
@@ -114,6 +115,11 @@ namespace ContratoSeguro_Api
             services.AddTransient<IMailService, SendGridMailService>();
             #endregion
 
+            #region Injeção Dependência Documents
+            services.AddTransient<IDocumentoRepository, DocumentoRepository>();
+            services.AddTransient<AdicionarArquivoCommandHandler, AdicionarArquivoCommandHandler>();
+            #endregion
+
 
 
             //SWAGGER
@@ -144,6 +150,8 @@ namespace ContratoSeguro_Api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

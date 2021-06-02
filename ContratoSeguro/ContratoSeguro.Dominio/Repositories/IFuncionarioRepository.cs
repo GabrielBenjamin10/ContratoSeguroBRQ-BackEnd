@@ -9,7 +9,7 @@ namespace ContratoSeguro.Dominio.Repositories
 {
     public interface IFuncionarioRepository
     {
-        void Adicionar(Funcionario usuario);
+        void Adicionar(Funcionario usuario); 
         Funcionario BuscarPorCPF(string cPF);
         Funcionario BuscarPorNome(string nome);
         Funcionario BuscarPorId(Guid id);
