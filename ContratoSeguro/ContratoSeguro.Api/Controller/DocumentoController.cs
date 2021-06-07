@@ -35,7 +35,7 @@ namespace ContratoSeguro.Api.Controller
             [FromServices] EnviarArquivoCommandHandler handler
         )
         {
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult)handler.Handle(command);/////////////////////
         }
     }
 }
