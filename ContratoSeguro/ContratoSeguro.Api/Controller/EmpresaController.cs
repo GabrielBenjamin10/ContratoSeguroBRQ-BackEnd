@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace ContratoSeguro.Api.Controller
 {
-    [Route("api/account/company")]
+    [Route("v1/account/company")]
     [ApiController]
     public class EmpresaController : ControllerBase
     {

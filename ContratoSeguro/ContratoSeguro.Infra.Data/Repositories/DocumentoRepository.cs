@@ -23,11 +23,26 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context.Documentos.Add(arquivo);
             _context.SaveChanges();
         }
+        public Documento BuscarPorId(Guid id)
+        {
+            return _context.Documentos.FirstOrDefault(p => p.Id == id);
+        }
 
         public void AdicionarArquivo(Documento arquivo)
         {
             _context.Documentos.Add(arquivo);
             _context.SaveChanges();
+        }
+
+        public void Deletar(Guid id)
+        {
+            var documento = BuscarPorId(id);
+            _context
+                .Documentos
+                .Remove(documento);
+            _context
+                .SaveChanges();
+
         }
     }
 }

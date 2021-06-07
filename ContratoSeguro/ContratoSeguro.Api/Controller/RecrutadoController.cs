@@ -95,7 +95,7 @@ namespace ContratoSeguro.Api.Controller
         }
 
         [HttpDelete("delete-recruited")]
-        //[Authorize]
+        [Authorize(Roles = "Funcionario")]
         public GenericCommandResult DeleteRecruited(
                     [FromBody] DeletarRecrutadoCommand command,
                                     [FromServices] DeletarRecrutadoCommandHandler handler

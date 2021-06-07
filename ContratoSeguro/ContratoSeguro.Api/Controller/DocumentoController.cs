@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace ContratoSeguro.Api.Controller
 {
-    [Route("api/document")]
+    [Route("v1/document")]
     [ApiController]
     public class DocumentoController : ControllerBase
     {
@@ -36,6 +36,17 @@ namespace ContratoSeguro.Api.Controller
         )
         {
             return (GenericCommandResult)handler.Handle(command);/////////////////////
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public GenericCommandResult DeleteDocument(
+                    [FromBody] DeletarDocumentoCommand command,
+                                    [FromServices] DeletarDocumentoCommandHandler handler
+      )
+        {
+
+            return (GenericCommandResult)handler.Handle(command);
         }
     }
 }

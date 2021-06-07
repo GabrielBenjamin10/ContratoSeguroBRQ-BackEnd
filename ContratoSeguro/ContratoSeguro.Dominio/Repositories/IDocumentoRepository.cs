@@ -11,5 +11,8 @@ namespace ContratoSeguro.Dominio.Repositories
     {
         void UploadArquivo(Documento documento);
         void AdicionarArquivo(Documento documento);
+        void Deletar(Guid id);
+        Documento BuscarPorId(Guid id);
+
     }
 }

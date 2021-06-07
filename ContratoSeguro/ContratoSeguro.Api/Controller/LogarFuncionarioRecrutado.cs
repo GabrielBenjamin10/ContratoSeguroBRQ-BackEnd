@@ -15,7 +15,7 @@ using ContratoSeguro.Dominio.Entidades;
 
 namespace ContratoSeguro.Api.Controller
 {
-    [Route("api/account")]
+    [Route("v1/account")]
     [ApiController]
     public class LogarFuncionarioRecrutado : ControllerBase
     {

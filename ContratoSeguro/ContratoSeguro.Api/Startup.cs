@@ -119,6 +119,7 @@ namespace ContratoSeguro_Api
             services.AddTransient<IDocumentoRepository, DocumentoRepository>();
             services.AddTransient<UploadArquivoCommandHandler, UploadArquivoCommandHandler>();
             services.AddTransient<EnviarArquivoCommandHandler, EnviarArquivoCommandHandler>();
+            services.AddTransient<DeletarDocumentoCommandHandler, DeletarDocumentoCommandHandler>();
 
             #endregion
 
