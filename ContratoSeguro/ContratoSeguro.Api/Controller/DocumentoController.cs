@@ -1,7 +1,10 @@
 ﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Queries;
 using ContratoSeguro.Comum.Utills;
 using ContratoSeguro.Dominio.Commands.Documentos;
 using ContratoSeguro.Dominio.Handlers.Command.Documento;
+using ContratoSeguro.Dominio.Handlers.Queries.Documento;
+using ContratoSeguro.Dominio.Queries.Usuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +50,22 @@ namespace ContratoSeguro.Api.Controller
         {
 
             return (GenericCommandResult)handler.Handle(command);
+        }
+
+
+        [Route("{id}")]
+        [HttpGet]
+        public GenericQueryResult ListDoc(Guid id,
+            [FromServices] ListarDocumentosRecrutadoQueryHandler handler
+            )
+        {
+            ListarDocumentosRecrutadoQuery query = new ListarDocumentosRecrutadoQuery();
+
+            if (id == Guid.Empty)
+                return new GenericQueryResult(false, "Informe um id válido", null);
+            query.IdRecrutado = id;
+
+            return (GenericQueryResult)handler.Handle(query);
         }
     }
 }

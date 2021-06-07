@@ -1,13 +1,11 @@
-﻿using ContratoSeguro.Comum.Commands;
+﻿
 using ContratoSeguro.Comum.Handlers;
 using ContratoSeguro.Comum.Queries;
-using ContratoSeguro.Dominio.Queries;
+using ContratoSeguro.Dominio.Queries.Usuario;
 using ContratoSeguro.Dominio.Repositories;
-using System.Linq;
-using static ContratoSeguro.Dominio.Queries.BuscarPorNomeRecrutadoQuery;
+using static ContratoSeguro.Dominio.Queries.Usuario.BuscarPorNomeRecrutadoQuery;
 
-
-namespace ContratoSeguro.Dominio.Handlers.Queries
+namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
 {
     public class BuscarPorNomeRecrutadoQueryHandler : IHandlerQuery<BuscarPorNomeRecrutadoQuery>
     {

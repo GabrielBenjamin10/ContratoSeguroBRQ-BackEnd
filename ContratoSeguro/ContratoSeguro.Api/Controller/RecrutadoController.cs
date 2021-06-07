@@ -7,6 +7,7 @@ using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Handlers.Queries;
 using ContratoSeguro.Dominio.Handlers.Queries.Usuario;
 using ContratoSeguro.Dominio.Queries;
+using ContratoSeguro.Dominio.Queries.Usuario;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

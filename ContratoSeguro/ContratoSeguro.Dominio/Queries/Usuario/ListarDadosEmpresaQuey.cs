@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContratoSeguro.Dominio.Queries
+namespace ContratoSeguro.Dominio.Queries.Usuario
 {
     public class ListarDadosEmpresaQuery : IQuery
     {

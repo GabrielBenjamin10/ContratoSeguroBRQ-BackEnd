@@ -1,15 +1,10 @@
 ﻿using ContratoSeguro.Comum.Handlers;
 using ContratoSeguro.Comum.Queries;
-using ContratoSeguro.Dominio.Queries;
+using ContratoSeguro.Dominio.Queries.Usuario;
 using ContratoSeguro.Dominio.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ContratoSeguro.Dominio.Queries.ListarDadosRecrutadoQuery;
+using static ContratoSeguro.Dominio.Queries.Usuario.ListarDadosRecrutadoQuery;
 
-namespace ContratoSeguro.Dominio.Handlers.Queries
+namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
 {
     public class ListarDadosRecrutadoQueryHandler : IHandlerQuery<ListarDadosRecrutadoQuery>
     {

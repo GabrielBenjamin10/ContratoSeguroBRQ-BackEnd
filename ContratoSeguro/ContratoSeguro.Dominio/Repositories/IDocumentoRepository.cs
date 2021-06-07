@@ -13,6 +13,8 @@ namespace ContratoSeguro.Dominio.Repositories
         void AdicionarArquivo(Documento documento);
         void Deletar(Guid id);
         Documento BuscarPorId(Guid id);
+        ICollection<Documento> Listar();
+
 
     }
 }

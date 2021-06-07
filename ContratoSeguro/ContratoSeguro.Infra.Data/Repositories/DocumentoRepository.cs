@@ -1,6 +1,7 @@
 ﻿using ContratoSeguro.Dominio.Entidades;
 using ContratoSeguro.Dominio.Repositories;
 using ContratoSeguro.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,13 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context
                 .SaveChanges();
 
+        }
+        public ICollection<Documento> Listar()
+        {
+            return _context.Documentos
+                    .AsNoTracking()
+                    .OrderBy(u => u.DataExpiracao)
+                    .ToList();
         }
     }
 }

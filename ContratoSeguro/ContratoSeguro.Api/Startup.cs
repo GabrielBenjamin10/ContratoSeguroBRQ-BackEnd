@@ -2,6 +2,7 @@
 using ContratoSeguro.Dominio.Handlers.Command.Documento;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Handlers.Queries;
+using ContratoSeguro.Dominio.Handlers.Queries.Documento;
 using ContratoSeguro.Dominio.Handlers.Queries.Usuario;
 using ContratoSeguro.Dominio.Repositories;
 using ContratoSeguro.Infra.Data.Context;
@@ -120,6 +121,7 @@ namespace ContratoSeguro_Api
             services.AddTransient<UploadArquivoCommandHandler, UploadArquivoCommandHandler>();
             services.AddTransient<EnviarArquivoCommandHandler, EnviarArquivoCommandHandler>();
             services.AddTransient<DeletarDocumentoCommandHandler, DeletarDocumentoCommandHandler>();
+            services.AddTransient<ListarDocumentosRecrutadoQueryHandler, ListarDocumentosRecrutadoQueryHandler>();
 
             #endregion
 
