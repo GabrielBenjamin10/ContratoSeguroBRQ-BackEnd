@@ -11,6 +11,8 @@ namespace ContratoSeguro.Dominio.Repositories
     {
         void Alterar(Usuario usuario);
         Usuario BuscarPorEmail(string email);
+        Usuario BuscarPorId(Guid id);
+
 
     }
 }

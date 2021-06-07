@@ -20,36 +20,36 @@ namespace ContratoSeguro.Infra.Data.Repositories
 
         public void Adicionar(Recrutado usuario)
         {
-            _context.Recrutado.Add(usuario);
+            _context.Recrutados.Add(usuario);
             _context.SaveChanges();
         }
 
 
         public Recrutado BuscarPorCPF(string cPF)
         {
-            return _context.Recrutado.FirstOrDefault(u => u.CPF == cPF);
+            return _context.Recrutados.FirstOrDefault(u => u.CPF == cPF);
         }
 
         public Recrutado BuscarPorNome(string nome)
         {
             //return _context.Recrutado.Find(x => x.Recrutado == nome).FirstOrDefault();
-            return _context.Recrutado.FirstOrDefault(u => u.Nome == nome);
+            return _context.Recrutados.FirstOrDefault(u => u.Nome == nome);
         }
 
         public Recrutado BuscarPorId(Guid id)
         {
-            return _context.Recrutado.FirstOrDefault(p => p.Id == id);
+            return _context.Recrutados.FirstOrDefault(p => p.Id == id);
         }
 
         public Recrutado BuscarPorEmail(string email)
         {
-            return _context.Recrutado.FirstOrDefault(p => p.Email == email);
+            return _context.Recrutados.FirstOrDefault(p => p.Email == email);
         }
 
 
         public ICollection<Recrutado> Listar() //ICollection => Lista em forma de array para , posteriormente, modifica-los
         {
-            return _context.Recrutado
+            return _context.Recrutados
                      .AsNoTracking()
                      .OrderBy(u => u.DataCriacao)
                      .ToList();
@@ -65,7 +65,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
         {
             var recrutado = BuscarPorId(id);
             _context
-                .Recrutado
+                .Recrutados
                 .Remove(recrutado);
             _context
                 .SaveChanges();

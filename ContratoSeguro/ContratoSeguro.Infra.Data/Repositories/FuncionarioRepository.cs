@@ -21,32 +21,32 @@ namespace ContratoSeguro.Infra.Data.Repositories
 
         public void Adicionar(Funcionario usuario)
         {
-            _context.Funcionario.Add(usuario);
+            _context.Funcionarios.Add(usuario);
             _context.SaveChanges();
         }
 
         public Funcionario BuscarPorCPF(string cPF)
         {
-            return _context.Funcionario.FirstOrDefault(u => u.CPF == cPF);
+            return _context.Funcionarios.FirstOrDefault(u => u.CPF == cPF);
         }
 
         public Funcionario BuscarPorNome(string nome)
         {
-            return _context.Funcionario.FirstOrDefault(p => p.Nome == nome);
+            return _context.Funcionarios.FirstOrDefault(p => p.Nome == nome);
         }
         public Funcionario BuscarPorId(Guid id)
         {
-            return _context.Funcionario.FirstOrDefault(p => p.Id == id);
+            return _context.Funcionarios.FirstOrDefault(p => p.Id == id);
         }
 
         public Funcionario BuscarPorEmail(string email)
         {
-            return _context.Funcionario.FirstOrDefault(p => p.Email == email);
+            return _context.Funcionarios.FirstOrDefault(p => p.Email == email);
         }
 
         public ICollection<Funcionario> Listar()
         {
-            return _context.Funcionario
+            return _context.Funcionarios
                     .AsNoTracking()
                     .OrderBy(u => u.DataCriacao)
                     .ToList();
@@ -55,7 +55,7 @@ namespace ContratoSeguro.Infra.Data.Repositories
         {
             var funcionario = BuscarPorId(id);
             _context
-                .Funcionario
+                .Funcionarios
                 .Remove(funcionario);
             _context
                 .SaveChanges();

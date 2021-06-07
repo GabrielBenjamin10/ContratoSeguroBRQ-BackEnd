@@ -21,32 +21,32 @@ namespace ContratoSeguro.Infra.Data.Repositories
 
         public void Adicionar(Empresa usuario)
         {
-            _context.Empresa.Add(usuario);
+            _context.Empresas.Add(usuario);
             _context.SaveChanges();
         }
 
         public Empresa BuscarPorCNPJ(string cNPJ)
         {
-            return _context.Empresa.FirstOrDefault(u => u.CNPJ == cNPJ);
+            return _context.Empresas.FirstOrDefault(u => u.CNPJ == cNPJ);
         }
 
         public Empresa BuscarPorId(Guid id)
         {
-            return _context.Empresa.FirstOrDefault(p => p.Id == id);
+            return _context.Empresas.FirstOrDefault(p => p.Id == id);
         }
 
         public Empresa BuscarPorNome(string nome)
         {
-            return _context.Empresa.FirstOrDefault(p => p.Nome == nome);
+            return _context.Empresas.FirstOrDefault(p => p.Nome == nome);
         }
         public Empresa BuscarPorEmail(string email)
         {
-            return _context.Empresa.FirstOrDefault(p => p.Email == email);
+            return _context.Empresas.FirstOrDefault(p => p.Email == email);
         }
 
         public ICollection<Empresa> Listar()
         {
-            return _context.Empresa
+            return _context.Empresas
                     .AsNoTracking()
                     .OrderBy(u => u.DataCriacao)
                     .ToList();

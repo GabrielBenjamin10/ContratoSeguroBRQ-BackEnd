@@ -16,12 +16,11 @@ namespace ContratoSeguro.Infra.Data.Context
         {
 
         }
-        public DbSet<Funcionario> Funcionario { get; set; }
-        public DbSet<Recrutado> Recrutado { get; set; }
-        public DbSet<Empresa> Empresa { get; set; }
-        public DbSet<Documento> Documento { get; set; }
-
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Recrutado> Recrutados { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Documento> Documentos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,21 +29,20 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Ignore<Notification>();
 
             #region Mapeamento Tabela Usuários Recrutado
-            modelBuilder.Entity<Recrutado>().ToTable("Recrutado");
+            modelBuilder.Entity<Recrutado>().ToTable("Recrutados");
             modelBuilder.Entity<Recrutado>().Property(x => x.Id);
-            modelBuilder.Entity<Recrutado>().Property(x => x.IdUsuario);
+
 
             //CPF
-            modelBuilder.Entity<Dominio.Entidades.Recrutado>().Property(x => x.CPF).HasMaxLength(100);
+            modelBuilder.Entity<Recrutado>().Property(x => x.CPF).HasMaxLength(100);
             modelBuilder.Entity<Recrutado>().Property(x => x.CPF).HasColumnType("varchar(100)");
 
 
             #endregion
 
             #region Mapeamento Tabela Usuários Funcionario
-            modelBuilder.Entity<Funcionario>().ToTable("Funcionario");
+            modelBuilder.Entity<Funcionario>().ToTable("Funcionarios");
             modelBuilder.Entity<Funcionario>().Property(x => x.Id);
-            modelBuilder.Entity<Funcionario>().Property(x => x.IdUsuario);
 
             //Telefone
             modelBuilder.Entity<Dominio.Entidades.Funcionario>().Property(x => x.Telefone).HasMaxLength(11);
@@ -69,9 +67,8 @@ namespace ContratoSeguro.Infra.Data.Context
             #endregion
 
             #region Mapeamento Tabela Usuários Empresa
-            modelBuilder.Entity<Empresa>().ToTable("Empresa");
-            modelBuilder.Entity<Funcionario>().Property(x => x.Id);
-            modelBuilder.Entity<Empresa>().Property(x => x.IdUsuario);
+            modelBuilder.Entity<Empresa>().ToTable("Empresas");
+            modelBuilder.Entity<Empresa>().Property(x => x.Id);
             //CNPJ
             modelBuilder.Entity<Dominio.Entidades.Empresa>().Property(x => x.CNPJ).HasMaxLength(14);
             modelBuilder.Entity<Empresa>().Property(x => x.CNPJ).HasColumnType("varchar(14)");
@@ -112,12 +109,11 @@ namespace ContratoSeguro.Infra.Data.Context
             #endregion
 
             #region Mapeamento Tabela Documentos
-            modelBuilder.Entity<Documento>().ToTable("Documento");
+            modelBuilder.Entity<Documento>().ToTable("Documentos");
             modelBuilder.Entity<Documento>().Property(x => x.Id);
             ///Nome
             modelBuilder.Entity<Documento>().Property(x => x.Nome).HasMaxLength(40);
             modelBuilder.Entity<Documento>().Property(x => x.Nome).HasColumnType("varchar(40)");
-            modelBuilder.Entity<Documento>().Property(x => x.Nome).IsRequired();
             //DataCriacao
             modelBuilder.Entity<Documento>().Property(t => t.DataCriacao).HasColumnType("DateTime");
             modelBuilder.Entity<Documento>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
@@ -129,7 +125,7 @@ namespace ContratoSeguro.Infra.Data.Context
             #endregion
 
             #region Mapeamento Tabela Usuario
-            modelBuilder.Entity<Usuario>().ToTable("Usuario");
+            modelBuilder.Entity<Usuario>().ToTable("Usuarios");
             modelBuilder.Entity<Usuario>().Property(x => x.Id);
             //Nome
             modelBuilder.Entity<Usuario>().Property(x => x.Nome).HasMaxLength(40);

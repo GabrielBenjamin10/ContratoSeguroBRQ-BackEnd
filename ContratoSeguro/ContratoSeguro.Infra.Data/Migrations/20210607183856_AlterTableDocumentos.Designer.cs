@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContratoSeguro.Infra.Data.Migrations
 {
     [DbContext(typeof(ContratoSeguroContext))]
-    [Migration("20210601183142_User")]
-    partial class User
+    [Migration("20210607183856_AlterTableDocumentos")]
+    partial class AlterTableDocumentos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,19 +37,30 @@ namespace ContratoSeguro.Infra.Data.Migrations
                         .HasColumnType("DateTime")
                         .HasDefaultValueSql("GetDate()");
 
+                    b.Property<DateTime>("DataExpiracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailDestinatario")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
+
+                    b.Property<string>("NomeDestinatario")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlArquivo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdUsuario");
 
-                    b.ToTable("Documento");
+                    b.ToTable("Documentos");
                 });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.Usuario", b =>
@@ -95,7 +106,7 @@ namespace ContratoSeguro.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.Empresa", b =>
@@ -138,7 +149,7 @@ namespace ContratoSeguro.Infra.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.ToTable("Empresa");
+                    b.ToTable("Empresas");
                 });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.Funcionario", b =>
@@ -162,7 +173,7 @@ namespace ContratoSeguro.Infra.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
-                    b.ToTable("Funcionario");
+                    b.ToTable("Funcionarios");
                 });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.Recrutado", b =>
@@ -178,7 +189,7 @@ namespace ContratoSeguro.Infra.Data.Migrations
 
                     b.HasIndex("RecrutadoId");
 
-                    b.ToTable("Recrutado");
+                    b.ToTable("Recrutados");
                 });
 
             modelBuilder.Entity("ContratoSeguro.Dominio.Entidades.Documento", b =>

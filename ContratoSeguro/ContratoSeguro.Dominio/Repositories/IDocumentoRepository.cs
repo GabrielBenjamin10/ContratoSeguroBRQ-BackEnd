@@ -9,6 +9,7 @@ namespace ContratoSeguro.Dominio.Repositories
 {
     public interface IDocumentoRepository 
     {
-        void AdicionarArquivo(Documento arquivo);
+        void UploadArquivo(Documento documento);
+        void AdicionarArquivo(Documento documento);
     }
 }

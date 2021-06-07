@@ -15,13 +15,13 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
     public class AlterarSenhaCommandHandler : Notifiable, IHandlerCommand<AlterarSenhaCommand>
     {
         //Injetando o nosso repositório 
-        private readonly IRecrutadoRepository _recrutadoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
 
         //Injeção de dependência
-        public AlterarSenhaCommandHandler(IRecrutadoRepository recrutadoRepository)
+        public AlterarSenhaCommandHandler( IUsuarioRepository usuarioRepository)
         {
-            _recrutadoRepository = recrutadoRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             if (command.Invalid)
                 return new GenericCommandResult(false, "Senha inválida", command.Notifications);
 
-            var usuarioexiste = _recrutadoRepository.BuscarPorId(command.IdUsuario);
+            var usuarioexiste = _usuarioRepository.BuscarPorId(command.IdUsuario);
 
             if (usuarioexiste == null)
                 return new GenericCommandResult(false, "Usuário não encontrado", command.Notifications);
@@ -47,7 +47,7 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             command.Senha = Senha.Criptografar(command.Senha);
             usuarioexiste.AlterarSenha(command.Senha);
 
-            _recrutadoRepository.Alterar(usuarioexiste);
+            _usuarioRepository.Alterar(usuarioexiste);
 
 
             return new GenericCommandResult(true, "Senha Alterada", null);

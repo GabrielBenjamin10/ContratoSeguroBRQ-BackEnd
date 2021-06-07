@@ -23,15 +23,18 @@ namespace ContratoSeguro.Api.Controller
         /// <param name="handler">Handler de alterar senha do usuário</param>
         /// <returns>Senha do usuário alterada</returns>
         [Route("update-password")]
-        //[Authorize]
+        [Authorize]
         [HttpPut]
-        public ICommandResult AlterarSenha( AlterarSenhaCommand command, [FromServices] AlterarSenhaCommandHandler handler)
+        public GenericCommandResult UpdatePassword(
+           [FromBody] AlterarSenhaCommand command,
+           [FromServices] AlterarSenhaCommandHandler handler
+       )
         {
             var idUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
             command.IdUsuario = new Guid(idUsuario.Value);
 
-            return (GenericCommandResult)handler.Handle(command);
 
+            return (GenericCommandResult)handler.Handle(command);
         }
 
 

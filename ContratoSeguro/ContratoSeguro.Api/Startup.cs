@@ -117,7 +117,9 @@ namespace ContratoSeguro_Api
 
             #region Injeção Dependência Documents
             services.AddTransient<IDocumentoRepository, DocumentoRepository>();
-            services.AddTransient<AdicionarArquivoCommandHandler, AdicionarArquivoCommandHandler>();
+            services.AddTransient<UploadArquivoCommandHandler, UploadArquivoCommandHandler>();
+            services.AddTransient<EnviarArquivoCommandHandler, EnviarArquivoCommandHandler>();
+
             #endregion
 
 

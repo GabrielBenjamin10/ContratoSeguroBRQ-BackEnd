@@ -16,7 +16,7 @@ namespace ContratoSeguro.Comum.Entidades
             IdUsuario = Guid.NewGuid();
             DataCriacao = DateTime.Now;
             DataAlteracao = DateTime.Now;
-        }
+       }
 
         public Guid Id { get; set; }
         public Guid IdUsuario { get; set; }

@@ -18,9 +18,15 @@ namespace ContratoSeguro.Infra.Data.Repositories
             _context = context;
         }
 
+        public void UploadArquivo(Documento arquivo)
+        {
+            _context.Documentos.Add(arquivo);
+            _context.SaveChanges();
+        }
+
         public void AdicionarArquivo(Documento arquivo)
         {
-            _context.Documento.Add(arquivo);
+            _context.Documentos.Add(arquivo);
             _context.SaveChanges();
         }
     }
