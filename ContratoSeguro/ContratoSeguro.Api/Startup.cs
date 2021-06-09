@@ -95,6 +95,7 @@ namespace ContratoSeguro_Api
 
 
 
+
             #endregion
 
             #region Injeção Dependência Usuario Empresa
@@ -110,6 +111,8 @@ namespace ContratoSeguro_Api
             #region Injeção Dependência Usuario
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<AlterarSenhaCommandHandler, AlterarSenhaCommandHandler>();
+            services.AddTransient<AlterarNomeCommandHandler, AlterarNomeCommandHandler>();
+
             #endregion
 
             #region Injeção Dependência Utils

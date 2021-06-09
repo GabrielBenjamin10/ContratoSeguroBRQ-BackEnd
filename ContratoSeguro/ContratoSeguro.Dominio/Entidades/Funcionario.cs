@@ -47,5 +47,10 @@ namespace ContratoSeguro.Dominio.Entidades
 
         }
 
+        public void AlterarFormacao(string formacão)
+        {
+            Formação = formacão;
+
+        }
     }
 }

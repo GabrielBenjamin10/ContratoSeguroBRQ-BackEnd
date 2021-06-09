@@ -36,6 +36,18 @@ namespace ContratoSeguro.Dominio.Entidades
                 Senha = senha;
 
         }
+
+        public void AlterarNome(string nome)
+        {
+            AddNotifications(new Contract()
+                   .Requires()
+               .HasMinLen(nome, 3, "Nome", "Nome deve conter pelo menos 3 caracteres.")
+               .HasMaxLen(nome, 40, "Nome", "Nome deve conter no máximo 40 caracteres.")
+                    );
+            if (Valid)
+                Nome = nome;
+
+        }
     }
 
  }

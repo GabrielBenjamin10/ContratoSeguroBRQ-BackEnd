@@ -26,6 +26,11 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                         Id = x.Id,
                         IdUsuario = x.IdUsuario,
                         Nome = x.Nome,
+                        Email = x.Email,
+                        Telefone = x.Telefone,
+                        Formação = x.Formação
+
+                        
 
                     };
                 }

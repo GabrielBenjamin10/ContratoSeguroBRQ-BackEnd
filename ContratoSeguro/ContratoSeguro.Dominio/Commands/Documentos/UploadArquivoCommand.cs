@@ -17,9 +17,6 @@ namespace ContratoSeguro.Dominio.Commands.Documentos
         public UploadArquivoCommand(string urlArquivo, DateTime dataExpiracao, string nomeDestinatario, string emailDestinatario)
         {
             UrlArquivo = urlArquivo;
-            DataExpiracao = dataExpiracao;
-            NomeDestinatario = nomeDestinatario;
-            EmailDestinatario = emailDestinatario;
         }
 
         public string UrlArquivo { get; set; }

@@ -31,14 +31,18 @@ namespace ContratoSeguro.Api.Controller
 
             return new GenericCommandResult(true, "Upload concluído com sucesso!", urlIdocumento);
         }
-        [Route("send")]
+
+        [Route("send/{id}")]
         [HttpPost]
         public GenericCommandResult SendFiles(
             [FromBody] EnviarArquivoCommand command,
             [FromServices] EnviarArquivoCommandHandler handler
         )
         {
-            return (GenericCommandResult)handler.Handle(command);/////////////////////
+            var idUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
+            command.IdUsuario = new Guid(idUsuario.Value);
+
+            return (GenericCommandResult)handler.Handle(command);
         }
 
         [HttpDelete]

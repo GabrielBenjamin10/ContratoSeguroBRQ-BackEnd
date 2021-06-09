@@ -25,10 +25,11 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Documento
             // Validar Command
             command.Validar();
 
-            var arquivo = new Entidades.Documento(command.NomeDestinatario, command.EmailDestinatario, command.DataExpiracao);
+            var arquivo = new Entidades.Documento(command.NomeDestinatario, command.EmailDestinatario, command.DataExpiracao, command.IdUsuario);
 
             if (arquivo.Invalid)
                 return new GenericCommandResult(false, "Dados Inválido", arquivo.Notifications);
+
 
             arquivo.AdicionarDestinatario(command.EmailDestinatario, command.NomeDestinatario);
             _documentoRepository.AdicionarArquivo(arquivo);

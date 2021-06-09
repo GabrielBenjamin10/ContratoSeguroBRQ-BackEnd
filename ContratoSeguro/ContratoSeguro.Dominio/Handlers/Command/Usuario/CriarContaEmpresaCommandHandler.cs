@@ -60,10 +60,10 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
             if (usuario.Invalid)
                 return new GenericCommandResult(false, "Usuário Inválido", usuario.Notifications);
 
-            _empresaRepository.Adicionar(usuario);
+            if (!string.IsNullOrEmpty(command.Telefone))
+                usuario.AdicionarTelefone(command.Telefone);
 
-            //Enviar Email de Boas Vindas
-            //Send Grid
+            _empresaRepository.Adicionar(usuario);
 
             _emailService.SendEmailAsyncRecruted(usuario.Email, $"{nome}Senha Provisória: {senha}", null);
 

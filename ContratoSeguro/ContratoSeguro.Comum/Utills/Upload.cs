@@ -22,5 +22,18 @@ namespace ContratoSeguro.Comum.Utills
 
             return "http://192.168.0.76:5001/upload/" + nomeArquivo;
         }
+
+        public static string Imagem(IFormFile arquivo)
+        {
+            var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(arquivo.FileName);
+
+            var caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", nomeArquivo);
+
+            using var streamArquivo = new FileStream(caminhoArquivo, FileMode.Create);
+
+            arquivo.CopyTo(streamArquivo);
+
+            return "http://192.168.0.76:5001/images/" + nomeArquivo;
+        }
     }
 }

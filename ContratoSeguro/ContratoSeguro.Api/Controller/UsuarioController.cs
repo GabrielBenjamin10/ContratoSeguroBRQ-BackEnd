@@ -1,4 +1,5 @@
 ﻿using ContratoSeguro.Comum.Commands;
+using ContratoSeguro.Comum.Utills;
 using ContratoSeguro.Dominio.Commands.Usuarios;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using Microsoft.AspNetCore.Authorization;
@@ -37,6 +38,27 @@ namespace ContratoSeguro.Api.Controller
             return (GenericCommandResult)handler.Handle(command);
         }
 
+        /// <summary>
+        /// Altera o nome do usuário
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="handler"></param>
+        /// <returns>Retorna</returns>
+        [Route("update-name")]
+        [Authorize]
+        [HttpPut]
+        public GenericCommandResult UpdateName(
+           [FromBody] AlterarNomeCommand command,
+           [FromServices] AlterarNomeCommandHandler handler
+       )
+        {
+            var idUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
+            command.IdUsuario = new Guid(idUsuario.Value);
+
+
+            return (GenericCommandResult)handler.Handle(command);
+        }
+
 
         /// <summary>
         /// Esse metodo envia um email para o recrutado com as novas credenciais
@@ -54,6 +76,23 @@ namespace ContratoSeguro.Api.Controller
             var resultado = (GenericCommandResult)handler.Handle(command);
 
             return resultado;
+        }
+
+        [Route("upload-image")]
+        //[Authorize]
+        [HttpPost]
+        public ICommandResult UploadImagem(IFormFile imagem)
+        ////Definimos que o CriarContaHanlde é um serviço
+        {
+            if (imagem == null)
+                return new GenericCommandResult(false, "Envie um arquivo!", null);
+
+            if (!imagem.ContentType.Contains("image"))
+                return new GenericCommandResult(false, "É necessário que o arquivo enviado seja uma imagem!", null);
+
+            var urlImagem = Upload.Imagem(imagem);
+
+            return new GenericCommandResult(true, "Upload concluído com sucesso!", urlImagem);
         }
     }
 }

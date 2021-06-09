@@ -22,11 +22,12 @@ namespace ContratoSeguro.Dominio.Entidades
             UrlArquivo = urlArquivo;
         }
 
-        public Documento(string nomeDestinatario, string emailDestinatario, DateTime dataExpiracao)
+        public Documento(string nomeDestinatario, string emailDestinatario, DateTime dataExpiracao, Guid idUsuario)
         {
             NomeDestinatario = nomeDestinatario;
             EmailDestinatario = emailDestinatario;
             DataExpiracao = dataExpiracao;
+            IdUsuario = idUsuario;
         }
 
         public string Nome { get; set; }
@@ -36,7 +37,6 @@ namespace ContratoSeguro.Dominio.Entidades
         public string NomeDestinatario { get; set; }
         public string EmailDestinatario { get; set; }
         public DateTime DataExpiracao { get; set; }
-        public Guid IdRecrutado { get; set; }
 
         public void AdicionarDestinatario(string nomeDestinatario, string emailDestinatario)
         {
