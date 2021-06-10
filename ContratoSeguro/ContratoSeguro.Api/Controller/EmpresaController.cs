@@ -71,7 +71,7 @@ namespace ContratoSeguro.Api.Controller
         /// <returns>Retorna o token</returns>
         private string GerarJSONWebToken(Empresa userInfo)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguro"));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ChaveSecretaContratoSeguroApi"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             // Definimos nossas Claims (dados da sessão) para poderem ser capturadas
@@ -81,14 +81,24 @@ namespace ContratoSeguro.Api.Controller
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.Email),
                 new Claim(ClaimTypes.Role, userInfo.Tipo.ToString()),
                 new Claim("role", userInfo.Tipo.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, userInfo.Id.ToString())
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.CNPJ.ToString()),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Bairro),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.RazaoSocial),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Matriz),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Logradouro),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.UF),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Cidade),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Numero),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.DataAbertura.ToString())
+
             };
 
             // Configuramos nosso Token e seu tempo de vida
             var token = new JwtSecurityToken
                 (
-                    "contratoSeguro",
-                    "contratoSeguro",
+                    "contratoseguro",
+                    "contratoseguro",
                     claims,
                     expires: DateTime.Now.AddMinutes(120),
                     signingCredentials: credentials

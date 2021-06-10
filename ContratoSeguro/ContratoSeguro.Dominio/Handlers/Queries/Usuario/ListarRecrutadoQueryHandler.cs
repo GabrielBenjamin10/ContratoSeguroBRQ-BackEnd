@@ -29,7 +29,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                         IdUsuario = x.IdUsuario,
                         Nome = x.Nome,
                         Email = x.Email,
-                        Telefone = x.Telefone
+                        Telefone = x.Telefone,
+                        CPF = x.CPF
                     };
                 }
             );

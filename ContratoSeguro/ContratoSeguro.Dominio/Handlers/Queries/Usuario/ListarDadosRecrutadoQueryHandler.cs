@@ -16,17 +16,17 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
         }
         public IQueryResult Handle(ListarDadosRecrutadoQuery query)
         {
-            var empresa = _recrutadoRepository.BuscarPorId(query.IdRecrutado);
+            var recrutado = _recrutadoRepository.BuscarPorId(query.IdRecrutado);
 
-            if (empresa == null)
+            if (recrutado == null)
                 return new GenericQueryResult(false, "Recrutado não encontrada ", null);
 
             var retorno = new ListarDadosRecrutadoQueryResult()
             {
-                Nome = empresa.Nome,
-                Email = empresa.Email,
-                Telefone = empresa.Telefone,
-                CPF = empresa.CPF,
+                Nome = recrutado.Nome,
+                Email = recrutado.Email,
+                Telefone = recrutado.Telefone,
+                CPF = recrutado.CPF,
             };
 
             return new GenericQueryResult(true, "Dados do recrutado", retorno);

@@ -28,7 +28,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                         Nome = x.Nome,
                         Email = x.Email,
                         Telefone = x.Telefone,
-                        Formação = x.Formação
+                        Formação = x.Formação,
+                        CPF = x.CPF
 
                         
 
