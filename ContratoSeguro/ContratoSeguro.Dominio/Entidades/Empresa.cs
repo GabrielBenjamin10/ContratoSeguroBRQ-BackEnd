@@ -1,5 +1,6 @@
 ﻿using ContratoSeguro.Comum.Entidades;
 using ContratoSeguro.Comum.Enum;
+using Flunt.Br.Extensions;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace ContratoSeguro.Dominio.Entidades
                .HasMaxLen(nome, 40, "Nome", "Nome deve conter no máximo 40 caracteres.")
                .IsEmail(email, "Email", "Informe um e-mail válido")
                .HasMinLen(senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
-               .HasMinLen(cNPJ, 14, "CNPJ", "O CNPJ deve conter no minimo e no maximo 11 digitos.")
+               .IsCnpj(cNPJ, "CNPJ", "CNPJ inválida")
                .HasMaxLen(matriz, 40, "Matriz", "A matriz  deve conter no máximo 40 caracteres")
                .HasMinLen(numero, 1, "Numero", "O numero deve conter no minimo 1 digito")
 

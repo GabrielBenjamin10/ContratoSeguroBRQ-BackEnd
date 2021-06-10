@@ -1,5 +1,6 @@
 ﻿using ContratoSeguro.Comum.Entidades;
 using ContratoSeguro.Comum.Enum;
+using Flunt.Br.Extensions;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace ContratoSeguro.Dominio.Entidades
                 .HasMaxLen(nome, 40, "Nome", "Nome deve conter no máximo 40 caracteres.")
                 .IsEmail(email, "Email", "Informe um e-mail válido")
                 .HasMinLen(senha, 6, "Senha", "Senha deve ter no minímo 6 caracteres.")
-                .HasMinLen(cPF, 11, "CPF", "O seu numero de CPF deve conter no minimo e no maximo 11 digitos.")
+                .IsCpf(cPF, "CPF", "CPF inválido")
+
             );
 
             if (Valid)
