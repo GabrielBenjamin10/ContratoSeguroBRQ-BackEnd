@@ -40,12 +40,12 @@ namespace ContratoSeguro.Dominio.Handlers.Command.Usuario
 
             var usuarioexiste = _usuarioRepository.BuscarPorId(command.IdUsuario);
 
-            if (usuarioexiste == null)
-                return new GenericCommandResult(false, "Usuário não encontrado", command.Notifications);
+            if (!Senha.ValidarSenha(command.SenhaAtual, usuarioexiste.Senha))
+                return new GenericCommandResult(false, "Senha atual incorreta!", command.SenhaAtual);
 
             //TODO: Criptografar senha
-            command.Senha = Senha.Criptografar(command.Senha);
-            usuarioexiste.AlterarSenha(command.Senha);
+            var senhaCriptografada = Senha.Criptografar(command.NovaSenha);
+            usuarioexiste.AlterarSenha(senhaCriptografada);
 
             _usuarioRepository.Alterar(usuarioexiste);
 

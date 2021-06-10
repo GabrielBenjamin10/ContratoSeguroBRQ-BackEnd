@@ -146,6 +146,9 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasMaxLength(11);
             modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasColumnType("varchar(11)");
 
+            modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasMaxLength(11);
+            modelBuilder.Entity<Usuario>().Property(x => x.Telefone).HasColumnType("varchar(11)");
+
             //DataCriacao
             modelBuilder.Entity<Usuario>().Property(t => t.DataCriacao).HasColumnType("DateTime");
             modelBuilder.Entity<Usuario>().Property(t => t.DataCriacao).HasDefaultValueSql("GetDate()");
