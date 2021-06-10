@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ContratoSeguro.Infra.Data.Migrations
 {
-    public partial class Doceuser : Migration
+    public partial class Uploadimg : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,6 +17,7 @@ namespace ContratoSeguro.Infra.Data.Migrations
                     Senha = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     Tipo = table.Column<int>(type: "int", nullable: false),
                     Telefone = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true),
+                    UrlFoto = table.Column<string>(type: "VARCHAR(8000)", nullable: true),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()"),
                     DataAlteracao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()")
@@ -31,11 +32,11 @@ namespace ContratoSeguro.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false),
-                    DataExpiracao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true),
                     UrlArquivo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NomeDestinatario = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmailDestinatario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataExpiracao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCriacao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()"),
                     DataAlteracao = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "GetDate()")

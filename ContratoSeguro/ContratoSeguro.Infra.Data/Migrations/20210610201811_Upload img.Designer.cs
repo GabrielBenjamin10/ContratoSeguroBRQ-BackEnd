@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContratoSeguro.Infra.Data.Migrations
 {
     [DbContext(typeof(ContratoSeguroContext))]
-    [Migration("20210606232812_Doc e user")]
-    partial class Doceuser
+    [Migration("20210610201811_Upload img")]
+    partial class Uploadimg
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,6 @@ namespace ContratoSeguro.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
@@ -104,6 +103,9 @@ namespace ContratoSeguro.Infra.Data.Migrations
 
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
+
+                    b.Property<string>("UrlFoto")
+                        .HasColumnType("VARCHAR(8000)");
 
                     b.HasKey("Id");
 

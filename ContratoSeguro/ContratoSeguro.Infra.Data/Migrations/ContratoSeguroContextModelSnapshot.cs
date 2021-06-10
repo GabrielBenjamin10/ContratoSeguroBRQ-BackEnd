@@ -102,6 +102,9 @@ namespace ContratoSeguro.Infra.Data.Migrations
                     b.Property<int>("Tipo")
                         .HasColumnType("int");
 
+                    b.Property<string>("UrlFoto")
+                        .HasColumnType("VARCHAR(8000)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
