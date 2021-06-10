@@ -13,6 +13,7 @@ namespace ContratoSeguro.Dominio.Entidades
         public string Senha { get; set; }
         public EnTipoUsuario Tipo { get; set; }
         public string Telefone { get; set; }
+        public string UrlFoto { get; set; }
         public List<Documento> Documentos { get; set; }
 
         public void AdicionarTelefone(string telefone)

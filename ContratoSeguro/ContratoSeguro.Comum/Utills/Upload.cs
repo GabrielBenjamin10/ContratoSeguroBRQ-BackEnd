@@ -20,7 +20,7 @@ namespace ContratoSeguro.Comum.Utills
 
             arquivo.CopyTo(streamArquivo);
 
-            return "http://192.168.0.76:5001/upload/" + nomeArquivo;
+            return "http://localhost:5001/upload/" + nomeArquivo;
         }
 
         public static string Imagem(IFormFile arquivo)
@@ -33,7 +33,7 @@ namespace ContratoSeguro.Comum.Utills
 
             arquivo.CopyTo(streamArquivo);
 
-            return "http://192.168.0.76:5001/images/" + nomeArquivo;
+            return "http://localhost:5001/images/" + nomeArquivo;
         }
     }
 }
