@@ -1,4 +1,5 @@
 
+using ContratoSeguro.Api.Models;
 using ContratoSeguro.Dominio.Handlers.Command.Documento;
 using ContratoSeguro.Dominio.Handlers.Command.Usuario;
 using ContratoSeguro.Dominio.Handlers.Queries;
@@ -46,7 +47,8 @@ namespace ContratoSeguro_Api
                 //Remover propriedades nulas
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
-            
+            services.AddScoped(d => Configuration.GetSection("DocuSignKeys").Get<DocuSignKeys>());
+
             //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= DESKTOP-HQAU92S\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
             services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source= .\\SQLEXPRESS;Initial Catalog=ContratoSeguro;user id=sa; password=sa132"));
             //services.AddDbContext<ContratoSeguroContext>(o => o.UseSqlServer("Data Source=DESKTOP-1CB35NO;Initial Catalog= ContratoSeguro ;Persist Security Info=True;User ID=sa;Password=sa132"));
