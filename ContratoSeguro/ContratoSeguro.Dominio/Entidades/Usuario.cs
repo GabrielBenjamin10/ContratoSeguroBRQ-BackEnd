@@ -49,6 +49,12 @@ namespace ContratoSeguro.Dominio.Entidades
                 Nome = nome;
 
         }
+        public void AlterarImagem(string urlFoto)
+        {
+                UrlFoto = urlFoto;
+
+        }
+
     }
 
  }

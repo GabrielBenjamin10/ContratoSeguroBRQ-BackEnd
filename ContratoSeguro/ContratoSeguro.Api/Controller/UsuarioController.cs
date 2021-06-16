@@ -59,6 +59,20 @@ namespace ContratoSeguro.Api.Controller
             return (GenericCommandResult)handler.Handle(command);
         }
 
+        [HttpPut("{id}/image")]
+        public GenericCommandResult UpdateImage(Guid id,
+            [FromBody] AlterarImagemCommand command,
+            [FromServices] AlterarImagemCommandHandler handler
+        )
+        {
+            if (id == Guid.Empty)
+                return new GenericCommandResult(false, "Informe o Id do Usuario", "");
+
+            command.IdUsuario = id;
+
+            return (GenericCommandResult)handler.Handle(command);
+        }
+
 
         /// <summary>
         /// Esse metodo envia um email para o recrutado com as novas credenciais
@@ -78,21 +92,6 @@ namespace ContratoSeguro.Api.Controller
             return resultado;
         }
 
-        [Route("upload-image")]
-        //[Authorize]
-        [HttpPost]
-        public ICommandResult UploadImagem(IFormFile imagem)
-        ////Definimos que o CriarContaHanlde é um serviço
-        {
-            if (imagem == null)
-                return new GenericCommandResult(false, "Envie um arquivo!", null);
 
-            if (!imagem.ContentType.Contains("image"))
-                return new GenericCommandResult(false, "É necessário que o arquivo enviado seja uma imagem!", null);
-
-            var urlImagem = Upload.Imagem(imagem);
-
-            return new GenericCommandResult(true, "Upload concluído com sucesso!", urlImagem);
-        }
     }
 }

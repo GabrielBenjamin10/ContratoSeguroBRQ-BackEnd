@@ -157,7 +157,7 @@ namespace ContratoSeguro.Infra.Data.Context
             modelBuilder.Entity<Usuario>().Property(t => t.DataAlteracao).HasColumnType("DateTime");
             modelBuilder.Entity<Usuario>().Property(t => t.DataAlteracao).HasDefaultValueSql("GetDate()");
             
-            //UrlFoto
+            ////UrlFoto
             modelBuilder
                 .Entity<Usuario>()
                 .Property(a => a.UrlFoto)

@@ -118,6 +118,8 @@ namespace ContratoSeguro_Api
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<AlterarSenhaCommandHandler, AlterarSenhaCommandHandler>();
             services.AddTransient<AlterarNomeCommandHandler, AlterarNomeCommandHandler>();
+            services.AddTransient<AlterarImagemCommandHandler, AlterarImagemCommandHandler>();
+
 
             #endregion
 

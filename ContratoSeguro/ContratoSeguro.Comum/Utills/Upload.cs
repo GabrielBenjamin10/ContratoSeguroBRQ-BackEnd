@@ -35,5 +35,7 @@ namespace ContratoSeguro.Comum.Utills
 
             return "http://localhost:5001/images/" + nomeArquivo;
         }
+
+
     }
 }

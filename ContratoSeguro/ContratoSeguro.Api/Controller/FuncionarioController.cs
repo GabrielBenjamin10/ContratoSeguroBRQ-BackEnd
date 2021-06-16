@@ -146,7 +146,7 @@ namespace ContratoSeguro.Api.Controller
             // Definimos nossas Claims (dados da sessão) para poderem ser capturadas
             // a qualquer momento enquanto o Token for ativo
             var claims = new[] {
-                new Claim(JwtRegisteredClaimNames.GivenName, userInfo.Nome),
+                new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.Nome),
                 new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.CPF),
                 new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.DataNascimento.ToString()),
                 new Claim(JwtRegisteredClaimNames.FamilyName, userInfo.RG),

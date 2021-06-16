@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContratoSeguro.Infra.Data.Migrations
 {
     [DbContext(typeof(ContratoSeguroContext))]
-    [Migration("20210610201811_Upload img")]
-    partial class Uploadimg
+    [Migration("20210616173810_User")]
+    partial class User
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
