@@ -2,7 +2,10 @@
 using ContratoSeguro.Comum.Enum;
 using Flunt.Br.Extensions;
 using Flunt.Validations;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ContratoSeguro.Dominio.Entidades
 {
@@ -13,8 +16,12 @@ namespace ContratoSeguro.Dominio.Entidades
         public string Senha { get; set; }
         public EnTipoUsuario Tipo { get; set; }
         public string Telefone { get; set; }
-        public string UrlFoto { get; set; }
         public List<Documento> Documentos { get; set; }
+
+        [NotMapped]
+        public IFormFile Arquivo { get;  set; }
+        public string UrlFoto { get; set; }
+
 
         public void AdicionarTelefone(string telefone)
         {

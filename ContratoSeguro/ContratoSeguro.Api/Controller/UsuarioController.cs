@@ -59,18 +59,10 @@ namespace ContratoSeguro.Api.Controller
             return (GenericCommandResult)handler.Handle(command);
         }
 
-        [HttpPut("{id}/image")]
-        public GenericCommandResult UpdateImage(Guid id,
-            [FromBody] AlterarImagemCommand command,
-            [FromServices] AlterarImagemCommandHandler handler
-        )
+        [HttpPut("image")]
+        public GenericCommandResult UpdateImage([FromForm] AlterarImagemCommand command, [FromServices] AlterarImagemCommandHandler handle)
         {
-            if (id == Guid.Empty)
-                return new GenericCommandResult(false, "Informe o Id do Usuario", "");
-
-            command.IdUsuario = id;
-
-            return (GenericCommandResult)handler.Handle(command);
+            return (GenericCommandResult)handle.Handle(command);
         }
 
 

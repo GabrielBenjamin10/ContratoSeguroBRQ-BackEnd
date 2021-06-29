@@ -27,6 +27,7 @@ namespace ContratoSeguro.Dominio.Queries.Usuario
             public string UF { get; set; }
             public string Logradouro { get; set; }
             public string Cidade { get; set; }
+
         }
     }
 }

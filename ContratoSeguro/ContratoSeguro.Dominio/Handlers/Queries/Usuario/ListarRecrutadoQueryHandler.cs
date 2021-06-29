@@ -30,7 +30,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                         Nome = x.Nome,
                         Email = x.Email,
                         Telefone = x.Telefone,
-                        CPF = x.CPF
+                        CPF = x.CPF,
+                        UrlFoto = x.UrlFoto
                     };
                 }
             );

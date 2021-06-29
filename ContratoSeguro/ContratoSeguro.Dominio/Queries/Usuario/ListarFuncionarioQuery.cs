@@ -24,6 +24,7 @@ namespace ContratoSeguro.Dominio.Queries.Usuario
             public string Formação { get; set; }
 
             public string CPF { get; set; }
+            public string UrlFoto { get; set; }
 
 
         }

@@ -23,17 +23,20 @@ namespace ContratoSeguro.Comum.Utills
             return "http://localhost:5001/upload/" + nomeArquivo;
         }
 
-        public static string Imagem(IFormFile arquivo)
+        public static string Imagem(IFormFile _file)
         {
-            var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(arquivo.FileName);
+            //Gera um nome unico para o arquivo concatenando com o tipo dele
+            var _nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(_file.FileName);
 
-            var caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", nomeArquivo);
+            var _caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images\" + _nomeArquivo);
 
-            using var streamArquivo = new FileStream(caminhoArquivo, FileMode.Create);
+            // passa para nosso repositorio o arquivo para o alocar
+            using var _streamImagem = new FileStream(_caminhoArquivo, FileMode.Create);
 
-            arquivo.CopyTo(streamArquivo);
+            //faz uma copia do arquivo inserido no nosso repositorio
+            _file.CopyTo(_streamImagem);
 
-            return "http://localhost:5001/images/" + nomeArquivo;
+            return $"http://localhost:5000/upload/{_nomeArquivo}";
         }
 
 
