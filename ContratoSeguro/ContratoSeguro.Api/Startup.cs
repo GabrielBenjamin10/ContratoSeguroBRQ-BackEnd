@@ -158,6 +158,7 @@ namespace ContratoSeguro_Api
             }
 
             /*app.UseHttpsRedirection();*/
+            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -166,8 +167,6 @@ namespace ContratoSeguro_Api
             app.UseAuthentication();
 
             app.UseAuthorization();
-
-            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

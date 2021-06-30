@@ -28,7 +28,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                 CPF = funcionario.CPF,
                 RG = funcionario.RG,
                 DataNascimento = funcionario.DataNascimento,
-                Formação = funcionario.Formação
+                Formação = funcionario.Formação,
+                UrlFoto = funcionario.UrlFoto
             };
 
             return new GenericQueryResult(true, "Dados do funcionario", retorno);

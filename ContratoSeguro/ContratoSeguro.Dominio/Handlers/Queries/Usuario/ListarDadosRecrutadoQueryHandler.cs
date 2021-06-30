@@ -27,6 +27,7 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                 Email = recrutado.Email,
                 Telefone = recrutado.Telefone,
                 CPF = recrutado.CPF,
+                UrlFoto = recrutado.UrlFoto
             };
 
             return new GenericQueryResult(true, "Dados do recrutado", retorno);

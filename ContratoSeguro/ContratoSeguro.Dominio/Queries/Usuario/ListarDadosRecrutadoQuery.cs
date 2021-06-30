@@ -23,6 +23,7 @@ namespace ContratoSeguro.Dominio.Queries.Usuario
             public string Email { get; set; }
             public string Telefone { get; set; }
             public string CPF { get; set; }
+            public string UrlFoto { get; set; }
 
         }
     }

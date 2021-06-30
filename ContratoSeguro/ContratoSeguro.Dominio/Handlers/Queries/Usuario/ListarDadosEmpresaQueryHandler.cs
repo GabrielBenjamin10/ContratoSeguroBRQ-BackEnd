@@ -31,7 +31,8 @@ namespace ContratoSeguro.Dominio.Handlers.Queries.Usuario
                 Matriz = empresa.Matriz,
                 UF = empresa.UF,
                 Cidade = empresa.Cidade,
-                Logradouro = empresa.Logradouro
+                Logradouro = empresa.Logradouro,
+                UrlFoto = empresa.UrlFoto
             };
 
             return new GenericQueryResult(true, "Dados da empresa", retorno);

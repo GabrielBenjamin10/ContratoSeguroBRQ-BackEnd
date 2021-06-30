@@ -26,6 +26,7 @@ namespace ContratoSeguro.Dominio.Queries.Usuario
             public string RG { get; set; }
             public string Formação { get; set; }
             public DateTime DataNascimento { get; set; }
+            public string UrlFoto { get; set; }
         }
     }
 }
