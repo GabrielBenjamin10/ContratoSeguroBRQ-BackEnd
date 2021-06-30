@@ -62,6 +62,9 @@ namespace ContratoSeguro.Api.Controller
         [HttpPut("image")]
         public GenericCommandResult UpdateImage([FromForm] AlterarImagemCommand command, [FromServices] AlterarImagemCommandHandler handle)
         {
+            var idUsuario = HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti);
+            command.IdUsuario = new Guid(idUsuario.Value);
+
             return (GenericCommandResult)handle.Handle(command);
         }
 
