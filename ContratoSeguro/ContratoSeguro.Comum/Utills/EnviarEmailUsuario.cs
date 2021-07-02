@@ -36,7 +36,7 @@ namespace ContratoSeguro.Comum.Utills
                 var apiKey = "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";
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
-                var to = new EmailAddress("recrutadoteste003@gmail.com", "Gustavo Silva");
+                var to = new EmailAddress("renatarecrutada@gmail.com", "Renata");
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
                 var response = await client.SendEmailAsync(msg);
             }
@@ -46,7 +46,7 @@ namespace ContratoSeguro.Comum.Utills
                 var apiKey = "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";
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
-                var to = new EmailAddress("empresateste001@gmail.com", "Senai Informática 132");
+                var to = new EmailAddress("tacosadvocacia@gmail.com", "Tacos");
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
                 var response = await client.SendEmailAsync(msg);
             }
@@ -57,7 +57,7 @@ namespace ContratoSeguro.Comum.Utills
                 var apiKey = "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";
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
-                var to = new EmailAddress("funcionarioTeste001@gmail.com", "Eduardo Silva");
+                var to = new EmailAddress("joaofuncionariologin@gmail.com", "Joao Augusto");
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
                 var response = await client.SendEmailAsync(msg);
             }
@@ -68,7 +68,7 @@ namespace ContratoSeguro.Comum.Utills
                 var apiKey = "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";
                 var client = new SendGridClient(apiKey);
                 var from = new EmailAddress("contratoseguro@gmail.com", "Contrato Seguro");
-                var to = new EmailAddress("recrutadoteste003@gmail.com", "Kaua Deja");
+                var to = new EmailAddress("renatarecrutada@gmail.com", "Renata");
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, content, null);
                 var response = await client.SendEmailAsync(msg);
             }

@@ -26,7 +26,7 @@ namespace ContratoSeguro.Api.Controller
         {
             var emailTemplate = new DocuSignEmailTemplate($"Contrato Clt {user.Nome}", "É um prazer ter você em nosso time, vamos entrar com o pé direito, assine este documento e estamos ansiosos para sua chegada ao elenco");
 
-            var docuSignTemplate = new DocuSignTemplate("c23d5280-c04c-4365-a6d5-118a40c54098", new List<string> { "Test Email Recipient" });
+            var docuSignTemplate = new DocuSignTemplate("cd3dffcd-a1f3-496a-89c1-16028cf021a6", new List<string> { "Test Email Recipient" });
 
             var docuSignEnvelope = new DocuSignEnvelopes(_docuSignCredentials, emailTemplate, docuSignTemplate);
 
