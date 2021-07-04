@@ -33,7 +33,7 @@ namespace ContratoSeguro.Comum.Utills
             // passa para nosso repositorio o arquivo para o alocar
             using var _streamImagem = new FileStream(_caminhoArquivo, FileMode.Create);
 
-            //faz uma copia do arquivo inserido no nosso repositorio
+            //faz uma copia do arquivo inserido no nosso repositorio!
             _file.CopyTo(_streamImagem);
 
             return $"http://localhost:5001/upload/{_nomeArquivo}";
